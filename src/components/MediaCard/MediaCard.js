@@ -34,6 +34,10 @@ const MediaCard = ({name,content,image,alt}) => {
     )
 }
 
+MediaCard.PropTypes={
+    /*Şuanlık boş */
+}
+
 MediaCard.defaultProps={
     name:"Çukurova Üniversitesi",
     content:" Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy",
