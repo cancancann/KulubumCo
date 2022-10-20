@@ -5,9 +5,10 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import PropTypes from "prop-types";
 
+// import PropTypes from "prop-types";
 
+/* Grid Sistemi oturtulacak..*/
 
 const MediaCard = ({name,content,image,alt}) => {
     return (
@@ -15,7 +16,7 @@ const MediaCard = ({name,content,image,alt}) => {
             <CardMedia
                 component="img"
                 height="191"
-                src={image}
+                image={require('../../asset/image_3.jpg')} /*Dynamic lazım */
                 alt={alt}
             />
             <CardContent>
@@ -34,9 +35,9 @@ const MediaCard = ({name,content,image,alt}) => {
     )
 }
 
-MediaCard.PropTypes={
-    /*Şuanlık boş */
-}
+// // MediaCard.PropTypes={
+// //     /*Şuanlık boş*/
+// }
 
 MediaCard.defaultProps={
     name:"Çukurova Üniversitesi",
