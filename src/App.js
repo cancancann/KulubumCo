@@ -1,10 +1,12 @@
 import './App.css';
-import HomePage from './pages/Homepage/Homepage';
-
+import Router from './Router/Routes';
+import { SnackbarProvider, enqueueSnackbar } from 'notistack'
 function App() {
   return (
     <div>
-        <HomePage/>
+      <SnackbarProvider>
+        <Router />
+      </SnackbarProvider>
     </div>
   );
 }
