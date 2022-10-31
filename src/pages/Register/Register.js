@@ -1,5 +1,5 @@
 import { Button, TextField } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import Register2 from "../../asset/Register2.png"
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
@@ -19,8 +19,8 @@ const Register = ({ ...props }) => {
 
     const onSaveClick = () => {
         var data = {
-            username: dataSource?.Username,
-            password: dataSource?.Password,
+            Username: dataSource?.Username,
+            Password: dataSource?.Password,
             Email: dataSource?.Email,
             Birthdate: dataSource?.Birthdate,
             Cinsiyet: dataSource?.Cinsiyet,

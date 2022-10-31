@@ -4,16 +4,33 @@ import React, { useState } from "react";
 import Register3 from '../../asset/Register2.png'
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 
 const Login = () => {
+    const navigate = useNavigate();
     const [dataSource, setDataSource] = useState({})
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+
     const onSaveClick = () => {
         var data = {
-            username: dataSource?.Username,
-            password: dataSource?.Password
+            Username: dataSource?.Username,
+            Password: dataSource?.Password
         }
-        console.log(data)
+        axios({url:'http://localhost:4000/api/auth/login',data:data,method: 'post'}).then(res=>{
+            if(res?.data?.success){
+                navigate('/home')
+            }
+            else {
+                console.log(res)
+                enqueueSnackbar("Yanlıs bilgi girdiniz Hata Oluştu!!", { variant: "error" })
+            }
+        }).catch(err => {
+            console.log(err)
+            enqueueSnackbar(err?.response?.data?.message, { variant: "error" })
+        })
     }
     const dataSourceHandler = (field, value) => {
         setDataSource({ ...dataSource, [field]: value })

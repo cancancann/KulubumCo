@@ -7,6 +7,7 @@ import Register from "../pages/Register/Register";
 const Router = () => {
     const routes = useRoutes(
         [
+
             {
                 path: '/home',
                 element: <HomePage />
@@ -18,6 +19,10 @@ const Router = () => {
             {
                 path: '/login',
                 element: <Login />
+            },
+            {
+                path: '*',
+                element: <HomePage/>
             },
         ]
     )

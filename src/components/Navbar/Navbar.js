@@ -6,13 +6,14 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import SearchIcon from '@mui/icons-material/Search';
 import { useState } from "react";
+import { Link } from "react-router-dom";
 // import PropTypes from "prop-types";
 
 
 const Navbar = () => {
     const navItems = ['Beranda', 'Tutorial', 'Pemrograman', 'İletişim'];
     return (
-        <AppBar position="fixed" style={{backgroundColor:"#02A28F"}}>
+        <AppBar position="fixed" style={{ backgroundColor: "#02A28F" }}>
             <Toolbar >
                 <IconButton
                     color="inherit"
@@ -25,7 +26,9 @@ const Navbar = () => {
                     component="div"
                     sx={{ flexGrow: 2, display: { xs: 'none', sm: 'block' } }}
                 >
-                    KULUBUM.CO
+                    <Link to="/home">
+                        KULUBUM.CO
+                    </Link>
                 </Typography>
                 <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                     {navItems.map((item) => (
@@ -34,7 +37,7 @@ const Navbar = () => {
                         </Button>
                     ))}
                 </Box>
-                <SearchIcon/> 
+                <SearchIcon />
             </Toolbar>
         </AppBar>
     )
