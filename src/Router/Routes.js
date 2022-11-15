@@ -22,7 +22,7 @@ const Router = () => {
             },
             {
                 path: '*',
-                element: <HomePage/>
+                element: <Login/>
             },
         ]
     )
