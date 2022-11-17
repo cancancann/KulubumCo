@@ -1,5 +1,4 @@
 import { Button } from '@mui/material';
-import React, { useState } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -7,7 +6,6 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import EmailIcon from '@mui/icons-material/Email';
 import PeopleIcon from '@mui/icons-material/People';
 
-import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { useSnackbar } from 'notistack';
 import Form, { FormInput, FormInfo, FormControl, FormPageWrapper } from '../../components/Form/Form';
@@ -30,10 +28,9 @@ const initialFormValues = {
 };
 
 const Register = ({ ...props }) => {
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
-  const [dataSource, setDataSource] = useState({});
-  console.log(process.env.BASE_URL);
+
   const onSaveClick = async (values) => {
     api.auth
       .register(values)

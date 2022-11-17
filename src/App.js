@@ -1,13 +1,15 @@
 import './App.css';
 import Router from './Router/Routes';
-import { SnackbarProvider, enqueueSnackbar } from 'notistack'
+import { SnackbarProvider } from 'notistack';
+import AuthProvider from './context/authContext';
+
 function App() {
   return (
-    <div>
+    <AuthProvider>
       <SnackbarProvider>
         <Router />
       </SnackbarProvider>
-    </div>
+    </AuthProvider>
   );
 }
 
