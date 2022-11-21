@@ -10,7 +10,7 @@ import api from '../../api';
 import { loginSchema } from '../../schemas/auth';
 import ColoredLine from '../../components/ColoredLine/ColoredLine';
 import GoogleIcon from '@mui/icons-material/Google';
-
+import paths from '../../Router/paths';
 
 const inputs = [
   {
@@ -25,7 +25,7 @@ const inputs = [
     label: 'Password',
     type: 'password',
   },
-]
+];
 
 const Login = ({ ...props }) => {
   const navigate = useNavigate();
@@ -33,14 +33,14 @@ const Login = ({ ...props }) => {
   const initialFormValues = {
     Username: '',
     Password: '',
-  }
+  };
   const onSaveClick = async (values) => {
     api.auth
       .login(values)
       .then((res) => {
         if (res?.data?.success) {
           enqueueSnackbar(res?.data?.message, { variant: 'success' });
-          navigate('/home');
+          navigate(paths.home.default);
         }
       })
       .catch((err) => {
@@ -63,12 +63,18 @@ const Login = ({ ...props }) => {
                 value={formik.values[input.name]}
                 error={formik.errors[input.name]}
                 helperText={formik.errors[input.name]}
-                style={{marginTop:"1.5rem"}}
+                style={{ marginTop: '1.5rem' }}
               />
             ))}
             <div>
               <Button
-                style={{ borderRadius: '10px', color: 'white', borderColor: 'black', backgroundColor: '#02A28F' , marginTop:"1.5rem"}}
+                style={{
+                  borderRadius: '10px',
+                  color: 'white',
+                  borderColor: 'black',
+                  backgroundColor: '#02A28F',
+                  marginTop: '1.5rem',
+                }}
                 className="w-full"
                 onClick={formik.handleSubmit}
                 variant="contained"
@@ -76,7 +82,7 @@ const Login = ({ ...props }) => {
                 Log In
               </Button>
             </div>
-            <ColoredLine text="Or"/>
+            <ColoredLine text="Or" />
             <div>
               <Button
                 style={{
@@ -88,9 +94,9 @@ const Login = ({ ...props }) => {
                 }}
                 className="w-full"
                 variant="contained"
-                startIcon={<GoogleIcon/>}
+                startIcon={<GoogleIcon />}
               >
-               sign-in with Google
+                sign-in with Google
               </Button>
             </div>
           </Form>
@@ -101,4 +107,3 @@ const Login = ({ ...props }) => {
 };
 
 export default Login;
-

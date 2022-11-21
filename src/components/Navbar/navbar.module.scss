@@ -1,0 +1,42 @@
+@import '../../styles/variables.scss';
+.navbar {
+  background-color: $color-primary;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &Container {
+    display: flex;
+    justify-content: space-between;
+    width: min(100%, $container-size);
+  }
+
+  &Left {
+    img {
+      width: 250px;
+    }
+  }
+  &Right {
+    display: flex;
+    align-items: center;
+  }
+  &Items {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+  }
+  &Search {
+    display: flex;
+    margin-left: 1rem;
+    margin-right: 1.25rem;
+    button {
+      border-radius: 999px;
+    }
+    svg {
+      color: $color-light;
+    }
+  }
+  &Avatar {
+    width: 3rem;
+  }
+}

@@ -9,7 +9,8 @@ const AuthProvider = ({ children }) => {
 
 const useAuth = () => {
   const context = useContext(AuthContext);
-  return { ...context, isAuth: !!Object.keys(context).length };
+  // !! Booleane cevirmek icin kullanılır.
+  return { ...context, isAuth: Boolean(Object.keys(context).length) };
 };
 
 export { useAuth };

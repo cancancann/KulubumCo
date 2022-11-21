@@ -15,14 +15,16 @@ const registerSchema = yup.object({
 });
 
 const loginSchema = yup.object({
-  Username: yup.string().
-  min(5, 'Kullanıcı en az 5 karakter girmelidir.')
-  .max(20, 'Kullanıcı max 20 karakter olabilir!')
-  .required('Bu input boş bırakılamaz!!'),
-  Password: yup.string()
-  .min(8,'Min 8 Karakterden oLuşabilir!!').
-  max(16,'Max 16 karakterden oluşabilir!!')
-  .required('Boş Bırakılamaz.')
+  Username: yup
+    .string()
+    .min(5, 'Kullanıcı en az 5 karakter girmelidir.')
+    .max(20, 'Kullanıcı max 20 karakter olabilir!')
+    .required('Bu input boş bırakılamaz!!'),
+  Password: yup
+    .string()
+    .min(8, 'Min 8 Karakterden oLuşabilir!!')
+    .max(16, 'Max 16 karakterden oluşabilir!!')
+    .required('Boş Bırakılamaz.'),
 });
 
 export { registerSchema, loginSchema };

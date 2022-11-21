@@ -1,0 +1,60 @@
+@import '../../styles/variables.scss';
+.home {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  &Intro {
+    min-height: 400px;
+    height: 100%;
+    border-radius: $border-radius-md;
+
+    &Content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100%;
+      padding: 1.5rem 1.3rem;
+      width: 100%;
+      background: linear-gradient(rgba(#000, 0.2), rgba(#000, 0.6));
+      border-radius: $border-radius-md;
+      * {
+        color: $color-light;
+      }
+      h1 {
+        font-size: 2rem;
+        width: min(100%, 600px);
+        line-height: 1.2;
+        margin-block: 1rem;
+      }
+    }
+  }
+  &Content {
+    &Nav {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      background-color: $color-primary;
+      margin-block: 1rem;
+      border-radius: $border-radius-l;
+      color: $color-light;
+      box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+      h1 {
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+      a {
+        text-decoration: underline;
+      }
+    }
+
+    &Feed {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+  }
+}

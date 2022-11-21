@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button as BaseButton } from '@mui/material';
 import Spinner from '../Spinner';
+import { default as BaseIconButton } from '@mui/material/IconButton';
 
 function Button({ children, disabled, loading, style, ...otherProps }) {
   const child = loading ? <Spinner /> : children;
@@ -21,4 +22,9 @@ function Button({ children, disabled, loading, style, ...otherProps }) {
   );
 }
 
+const IconButton = ({ children }) => {
+  return <BaseIconButton>{children}</BaseIconButton>;
+};
+
+export { IconButton };
 export default Button;

@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import { registerSchema } from '../../schemas/auth';
 import api from '../../api';
+import paths from '../../Router/paths';
 
 // İnline style Login klasorunun altında css file eklenecek
 
@@ -96,7 +97,7 @@ const Register = ({ ...props }) => {
             </Button>
             <FormInfo>
               Already have account?
-              <Link to="/login" className="ml-2 text-sky-500">
+              <Link to={paths.login} className="ml-2 text-sky-500">
                 Login
               </Link>
             </FormInfo>

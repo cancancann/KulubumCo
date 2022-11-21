@@ -1,0 +1,58 @@
+@import '../../styles/variables.scss';
+$sidebar-width: 500px;
+.layout {
+  display: flex;
+  justify-content: space-between;
+  background-color: $color-light;
+  padding-top: 2rem;
+
+  &Container {
+    display: flex;
+    width: min(100%, $container-size);
+    margin-inline: auto;
+  }
+  &Content,
+  &Sidebar {
+    height: 100%;
+  }
+  &Content {
+    width: 100%;
+  }
+  &Sidebar {
+    width: $sidebar-width;
+    padding-left: 2rem;
+    &Content {
+    }
+    &Title {
+      background-color: $color-primary;
+      padding: 0.75rem;
+      text-align: center;
+      color: $color-light;
+      box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+      font-weight: bold;
+      font-size: 1.25rem;
+      border-radius: $border-radius-l;
+      margin-bottom: 1.5rem;
+    }
+    &Item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.25rem;
+      color: $color-light-secondary;
+      font-weight: 500;
+    }
+  }
+  &Banner {
+    background-color: $color-primary;
+    margin-top: 5rem;
+    padding: 1rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: $color-light;
+  }
+}
+@media (max-width: $screen-l) {
+  .layoutSidebar {
+    display: none;
+  }
+}
