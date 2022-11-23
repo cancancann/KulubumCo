@@ -59,7 +59,7 @@ const SettingsLayout = () => {
       <div className={styles.container}>
         {/* ContainerContent */}
         <div className={styles.containerContent}>
-          <div className={styles.containerContentBackground}>Background</div>
+          <div className={styles.containerContentBackground}></div>
           <div className={styles.containerContentProfile}>
             <img src={avatar} alt="user" />
             <div>
