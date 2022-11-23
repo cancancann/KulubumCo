@@ -1,0 +1,91 @@
+@import '../../styles/variables.scss';
+
+.navbar {
+  background-color: #fff;
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  align-items: center;
+
+  &Setting {
+    padding: 2rem;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    cursor: pointer;
+  }
+
+  &Avatar {
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+  }
+}
+
+.layout {
+  background-color: #f3f3f3;
+  height: 100%;
+  width: 100%;
+
+  &Title {
+    background-color: #fff;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+  }
+  &Color {
+    background-image: url('../../asset/frame.png');
+    height: 100%;
+    width: 100%;
+    display: flex;
+    border: 2px solid rgba(232, 234, 238, 0.4);
+  }
+
+  &Content {
+    background-color: #fff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 3rem;
+  }
+
+  &Main {
+    background-color: burlywood;
+    height: 60%;
+    display: flex;
+    justify-content: space-between;
+    // padding: 2rem;//scrool
+
+    &Edit {
+      background-color: beige;
+      height: 100%;
+      width: 20%;
+      display: flex;
+      justify-content: center;
+    }
+
+    &Outle {
+      width: 80%;
+      background-color: coral;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  h2 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  p {
+    font-size: 1.5rem;
+  }
+}
+
+.notification {
+  padding: 1rem;
+  cursor: pointer;
+}
+.expandmore {
+  padding: 1rem;
+  cursor: pointer;
+}

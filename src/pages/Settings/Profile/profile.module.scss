@@ -1,0 +1,34 @@
+@import '../../../styles/variables.scss';
+
+.profile {
+  &Title {
+    display: flex;
+    justify-content: space-between;
+    color: #005e53;
+    font-weight: 700;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+}
+
+.form {
+  &Container {
+    display: flex;
+    gap: 3rem;
+  }
+  &Left {
+    width: 100%;
+    &Row {
+      width: 100%;
+      flex-wrap: wrap;
+      display: flex;
+      gap: 12px;
+      * {
+        flex: 1 1 calc(50% - 6px);
+      }
+    }
+  }
+  &Right {
+    width: 100%;
+  }
+}

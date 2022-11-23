@@ -1,0 +1,98 @@
+.settingsTitle {
+  color: #005e53;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+.form {
+  &Input {
+    label {
+      @extend .label;
+    }
+    input {
+      @extend .input;
+    }
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+  }
+  &Select {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    label {
+      @extend .label;
+    }
+    select {
+      @extend .select;
+    }
+  }
+  &Number {
+    label {
+      @extend .label;
+    }
+    &Container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      gap: 0.5rem;
+
+      select {
+        @extend .select;
+      }
+
+      input {
+        width: 100%;
+        @extend .input;
+      }
+    }
+  }
+
+  &Submit {
+    padding-block: 0.875rem;
+    background-color: #26b893;
+    padding-inline: 3rem;
+    font-weight: 700;
+    color: white;
+    border-radius: 0.5rem;
+    transition: 300ms;
+    &:not(:disabled) {
+      &:hover {
+        background-color: #083a50;
+        @extend .shadow;
+      }
+    }
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+}
+
+.label {
+  font-weight: 700;
+  color: #083a50;
+  margin-bottom: 0.25rem;
+}
+
+.input {
+  padding: 12px;
+  outline: none;
+  border: 1px solid #caced8;
+  border-radius: 0.5rem;
+  &:focus {
+    border-color: #26b893;
+    @extend .shadow;
+  }
+}
+.select {
+  border: 1px solid #caced8;
+  border-radius: 0.5rem;
+  padding: 12px;
+  outline: none;
+  &:focus {
+    @extend .shadow;
+  }
+}
+.shadow {
+  box-shadow: -1px -1px 4px rgba(38, 184, 147, 0.2), 2px 2px 4px rgba(38, 184, 147, 0.1);
+}

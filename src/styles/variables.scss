@@ -1,6 +1,7 @@
 $color-primary: #02a28f;
 $color-light: #f5f5f5;
 $color-light-secondary: #616161;
+
 $container-size: 1200px;
 $screen-xsm: 360px;
 $screen-sm: 576px;
@@ -13,3 +14,7 @@ $border-radius-sm: 0.25rem;
 $border-radius-md: 0.5rem;
 $border-radius-l: 1rem;
 $border-radius-xl: 2rem;
+
+$duration-fast: 300ms;
+$duration-normal: 500ms;
+$duration-slow: 1000ms;

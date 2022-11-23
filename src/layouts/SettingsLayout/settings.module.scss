@@ -1,0 +1,132 @@
+@import '../../styles/variables.scss';
+
+$container-padding: 4rem;
+$nav-height: 70px;
+
+// Layout
+.layout {
+  &Wrapper {
+    width: 100%;
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: $nav-height;
+
+      &Wrapper {
+        position: fixed;
+        background-color: #fff;
+        width: 100%;
+        border-bottom: 2px solid rgba(232, 234, 238, 0.315);
+      }
+
+      &Left {
+        padding: 2rem;
+        font-size: 1.5rem;
+        font-weight: bolder;
+        cursor: pointer;
+      }
+
+      &Right {
+        display: flex;
+        padding: 1rem;
+        align-items: center;
+        img {
+          width: 3rem;
+          //width/height oranı
+          aspect-ratio: 1;
+        }
+        .notification,
+        .expandmore {
+          padding: 1rem;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .container {
+      width: min(100%, $container-size);
+      height: 100%;
+      margin-inline: auto;
+
+      &Content {
+        background-color: #fff;
+        padding-top: $nav-height;
+
+        &Background {
+          background-image: url('../../asset/frame.png');
+          width: 100%;
+          border: 2px solid rgba(232, 234, 238, 0.4);
+          height: 152px;
+        }
+
+        &Profile {
+          // margin: 2rem;
+          display: flex;
+          align-items: center;
+          padding-inline: $container-padding;
+          color: #083a50;
+          margin-top: -50px;
+
+          img {
+            width: 180px;
+            aspect-ratio: 1;
+            margin-right: 40px;
+          }
+
+          h2 {
+            font-weight: bold;
+            font-size: 2rem;
+          }
+          p {
+            font-size: 1.25rem;
+          }
+        }
+      }
+
+      &Main {
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        padding-top: 1.5rem;
+        &Left {
+          // background-color: cornflowerblue;
+          width: 250px;
+          padding-right: 1rem;
+          border-right: 2px solid rgba(232, 234, 238, 0.4);
+          ul {
+            width: 100%;
+          }
+          &Item {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 0.75rem;
+            color: #caced8;
+            transition: $duration-normal;
+            border-radius: 1rem;
+            width: 100%;
+            &:hover {
+              background-color: #eaf8f5;
+              color: #083a50;
+              transition: $duration-normal;
+            }
+          }
+        }
+        &Right {
+          // background-color: darkkhaki;
+          width: 100%;
+          margin-left: 3rem;
+        }
+      }
+    }
+  }
+}
+
+.active {
+  background-color: #eaf8f5;
+  color: #083a50 !important;
+  transition: $duration-normal;
+}
