@@ -29,7 +29,7 @@ const inputs = [
 
 const Login = ({ ...props }) => {
   const navigate = useNavigate();
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
   const initialFormValues = {
     Username: '',
     Password: '',
