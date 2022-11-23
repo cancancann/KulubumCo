@@ -19,6 +19,10 @@ const sidebarLinks = [
     text: 'Password & Security',
     path: paths.settings.password,
   },
+  {
+    text:'Clubs',
+    path:paths.settings.clubs
+  }
 ];
 
 const SettingsLayout = () => {

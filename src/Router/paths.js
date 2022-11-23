@@ -8,6 +8,7 @@ const paths = {
   settings: {
     default: '/settings',
     password: `/settings/password`,
+    clubs:'/settings/clubs'
   },
 };
 

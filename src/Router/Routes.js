@@ -9,6 +9,7 @@ import paths from './paths';
 import SettingsLayout from '../layouts/SettingsLayout/SettingsLayout';
 import ProfileSettings from './../pages/Settings/Profile/ProfileSettings';
 import PasswordSecurity from './../pages/Settings/Password/PasswordSecurity';
+import Clubs from '../pages/Settings/Clubs/Clubs';
 
 const Router = () => {
   const routes = useRoutes([
@@ -46,6 +47,10 @@ const Router = () => {
           path: paths.settings.password,
           element: <PasswordSecurity />,
         },
+        {
+          path:paths.settings.clubs,
+          element:<Clubs />,
+        }
       ],
     },
   ]);

@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './card.module.scss';
+import photo from '../../../../asset/image_3.jpg'
 
 const Card = () => {
   return (
@@ -8,7 +9,7 @@ const Card = () => {
       <div className={styles.cardImage}>
         <img
           alt="Card"
-          src="https://static.birgun.net/resim/haber-detay-resim/2018/10/21/ogrencisiz-bolumlerde-bugun-cukurova-universitesi-522830-5.jpg"
+          src={photo}
         />
       </div>
       {/* Info Side */}
