@@ -1,0 +1,17 @@
+@import '../../../styles/variables.scss';
+
+.main {
+    width: 100%;
+
+    &Container {
+        width: 100%;
+
+        &Card {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+    }
+}

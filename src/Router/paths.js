@@ -1,14 +1,15 @@
 const paths = {
   home: {
     default: '/home',
-    detail: '/home/detail',
+    detailclub: '/home/detailclub',
   },
   login: '/login',
   register: '/register',
   settings: {
     default: '/settings',
     password: `/settings/password`,
-    clubs:'/settings/clubs'
+    clubs:'/settings/clubs',
+    follows:'/settings/follows'
   },
 };
 

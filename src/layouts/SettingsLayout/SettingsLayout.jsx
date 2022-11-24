@@ -21,7 +21,11 @@ const sidebarLinks = [
   },
   {
     text:'Clubs',
-    path:paths.settings.clubs
+    path:paths.settings.clubs,
+  },
+  {
+    text:'Takip Ettiklerim',
+    path:paths.settings.follows,
   }
 ];
 

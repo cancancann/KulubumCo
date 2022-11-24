@@ -10,6 +10,10 @@ import SettingsLayout from '../layouts/SettingsLayout/SettingsLayout';
 import ProfileSettings from './../pages/Settings/Profile/ProfileSettings';
 import PasswordSecurity from './../pages/Settings/Password/PasswordSecurity';
 import Clubs from '../pages/Settings/Clubs/Clubs';
+import ClubsPage from '../pages/Homepage/ClubsPage/ClubsPage';
+import Follows from '../pages/Settings/Follows/Follows';
+
+
 
 const Router = () => {
   const routes = useRoutes([
@@ -21,6 +25,10 @@ const Router = () => {
           index: true,
           element: <HomePage />,
         },
+        {
+          path: paths.home.detailclub,
+          element: <ClubsPage />
+        }
       ],
     },
     {
@@ -50,6 +58,10 @@ const Router = () => {
         {
           path:paths.settings.clubs,
           element:<Clubs />,
+        },
+        {
+          path:paths.settings.follows,
+          element:<Follows />
         }
       ],
     },
