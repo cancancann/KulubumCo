@@ -8,7 +8,27 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
-    justify-content: space-between;
+    // justify-content: space-between;
+    justify-content: center;
     margin-bottom: 1.5rem;
+  }
+  &Not{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    aspect-ratio: 1;
+    background: rgba(2, 162, 143, 0.1);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+
+    h3{
+      padding-inline: 2rem;
+      font-weight: 700;
+      font-size: 35px;
+      line-height: 40px;
+      color: #02A28F;
+      text-align: center;
+    }
   }
 }

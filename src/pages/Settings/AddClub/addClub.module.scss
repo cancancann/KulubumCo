@@ -1,0 +1,17 @@
+@import '../../../styles/variables.scss';
+
+
+.form{
+    width: 100%;
+    &Container{
+        display: flex;
+        justify-content: space-between;
+        gap: 3.8rem;
+    }
+    &Left{
+        width: 100%;
+    }
+    &Right{
+        width: 100%;
+    }
+}

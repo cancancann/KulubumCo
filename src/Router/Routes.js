@@ -12,6 +12,7 @@ import PasswordSecurity from './../pages/Settings/Password/PasswordSecurity';
 import Clubs from '../pages/Settings/Clubs/Clubs';
 import ClubsPage from '../pages/Homepage/ClubsPage/ClubsPage';
 import Follows from '../pages/Settings/Follows/Follows';
+import AddClub from '../pages/Settings/AddClub/AddClub';
 
 
 
@@ -62,6 +63,10 @@ const Router = () => {
         {
           path:paths.settings.follows,
           element:<Follows />
+        },
+        {
+          path:paths.settings.addClub,
+          element: <AddClub />
         }
       ],
     },

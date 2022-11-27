@@ -18,16 +18,20 @@ const sidebarLinks = [
     path: paths.settings.default,
   },
   {
-    text: 'Password & Security',
-    path: paths.settings.password,
-  },
-  {
     text: 'Clubs',
     path: paths.settings.clubs,
   },
   {
     text: 'Takip Ettiklerim',
     path: paths.settings.follows,
+  },
+  {
+    text: 'Kulüp Ekle ',
+    path: paths.settings.addClub
+  },
+  {
+    text: 'Password & Security',
+    path: paths.settings.password,
   },
 ];
 

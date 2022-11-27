@@ -9,7 +9,8 @@ const paths = {
     default: '/settings',
     password: `/settings/password`,
     clubs:'/settings/clubs',
-    follows:'/settings/follows'
+    follows:'/settings/follows',
+    addClub:'/settings/addClub'
   },
 };
 
