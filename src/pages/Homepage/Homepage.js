@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import Card from './components/Card/Card';
+import Card from '../../components/Card/Card';
 import styles from './home.module.scss';
 import introBackground from '../../asset/image.png';
+import cardImage from '../../asset/image_3.jpg';
 
 const HomePage = () => {
   const introStyle = {
@@ -32,13 +33,22 @@ const HomePage = () => {
         </div>
         {/* Content */}
         <div className={styles.homeContentFeed}>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          <Card>
+            <Card.Img photo={cardImage} />
+            <Card.Body>
+              <Card.Label>In Label</Card.Label>
+              <Card.Title>Cukurova Universitesi</Card.Title>
+              <Card.Owner>
+                <b>By </b>
+                Okçuluk Kulubü
+              </Card.Owner>
+              <Card.Caption>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy
+              </Card.Caption>
+              <Card.Date>22 Agustus 2022</Card.Date>
+            </Card.Body>
+          </Card>
         </div>
       </section>
     </main>

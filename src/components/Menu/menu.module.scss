@@ -1,0 +1,14 @@
+.menu {
+  position: relative;
+  &Toggle {
+    cursor: pointer;
+  }
+
+  &Body {
+    position: absolute;
+    margin-top: 0.5rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  }
+}

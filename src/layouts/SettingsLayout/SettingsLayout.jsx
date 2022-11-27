@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './settings.module.scss';
 // import { Outlet } from 'react-router-dom';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -9,6 +9,8 @@ import { Outlet } from 'react-router-dom';
 import paths from '../../Router/paths';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
+import Menu from '../../components/Menu/Menu';
+import Dropdown from '../../components/Dropdown/Dropdown';
 
 const sidebarLinks = [
   {
@@ -20,16 +22,18 @@ const sidebarLinks = [
     path: paths.settings.password,
   },
   {
-    text:'Clubs',
-    path:paths.settings.clubs,
+    text: 'Clubs',
+    path: paths.settings.clubs,
   },
   {
-    text:'Takip Ettiklerim',
-    path:paths.settings.follows,
-  }
+    text: 'Takip Ettiklerim',
+    path: paths.settings.follows,
+  },
 ];
 
 const SettingsLayout = () => {
+  const [active, setActive] = useState(false);
+
   const activeTab = sidebarLinks.find((link) => link.path === window.location.pathname) || sidebarLinks[0];
 
   return (
@@ -50,11 +54,19 @@ const SettingsLayout = () => {
               <div>
                 <img src={avatar} alt="User" />
               </div>
-              <div className={styles.expandmore}>
-                <IconButton>
-                  <ExpandMoreIcon />
-                </IconButton>
-              </div>
+              <Menu
+                active={active}
+                toggle={
+                  <div className={styles.expandmore} onClick={() => setActive(!active)}>
+                    <IconButton>
+                      <ExpandMoreIcon />
+                    </IconButton>
+                  </div>
+                }
+              >
+                {/* Menü tasarımı burada olacak */}
+                <Dropdown avatar={avatar} />
+              </Menu>
             </div>
           </div>
         </div>

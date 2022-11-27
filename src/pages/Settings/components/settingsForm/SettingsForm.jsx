@@ -46,9 +46,9 @@ const SettingsPhoneSelect = ({ label, placeholder, options = [] }) => {
   );
 };
 
-const SettingsSubmitButton = ({ children, disabled }) => {
+const SettingsSubmitButton = ({ children, disabled, style }) => {
   return (
-    <button className={styles.formSubmit} disabled={disabled}>
+    <button className={styles.formSubmit} disabled={disabled} style={style}>
       {children}
     </button>
   );

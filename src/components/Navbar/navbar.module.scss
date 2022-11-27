@@ -5,6 +5,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  width: 100%;
   &Container {
     display: flex;
     justify-content: space-between;
@@ -38,5 +40,48 @@
   }
   &Avatar {
     width: 3rem;
+  }
+  &Menu {
+    background-color: $color-lighter;
+    border-radius: 1rem;
+    min-width: 300px;
+    &Avatar {
+      padding: 1rem;
+      img {
+        margin-inline: auto;
+        width: 4rem;
+        aspect-ratio: 1;
+      }
+    }
+    &Title {
+      display: block;
+      background-color: $color-primary;
+      color: $color-light;
+      text-align: center;
+      padding-block: 0.5rem;
+      font-weight: 700;
+    }
+    &Links {
+      padding: 1rem;
+      a {
+        width: 100%;
+        display: inline-block;
+        padding: 0.75rem;
+        border: 1px solid rgba(86, 103, 137, 0.26);
+        margin-block: 0.5rem;
+        border-radius: 999px;
+        text-align: center;
+        color: $color-light-secondary;
+        &:last-of-type {
+          margin-bottom: 1rem;
+        }
+      }
+
+      button {
+        width: 100%;
+        background-color: $color-primary;
+        color: $color-lighter;
+      }
+    }
   }
 }
