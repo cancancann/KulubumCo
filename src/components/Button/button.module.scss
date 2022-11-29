@@ -1,0 +1,13 @@
+@import '../../styles/variables.scss';
+.button {
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.button[variant='contained'] {
+  background-color: $color-primary;
+  color: $color-light;
+}
+.button:active {
+  opacity: 0.7;
+}

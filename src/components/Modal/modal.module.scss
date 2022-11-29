@@ -1,0 +1,22 @@
+.modal {
+  position: fixed;
+  width: 100vw; //view width
+  height: 100vh; //view height
+  left: 0;
+  top: 0;
+  z-index: 99;
+  overflow-y: scroll;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+
+  &Bg {
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    position: fixed;
+    background-color: rgba(#000000, 0.5);
+    backdrop-filter: blur(3px);
+  }
+}

@@ -8,10 +8,10 @@ function Form({ children, title }) {
       style={{
         minWidth: 450,
       }}
-      className="flex-col items-center justify-center content-center bg-gray-200 font-semibold rounded-2xl  shadow-md shadow-gray-700 px-12 py-6 border-4 border-gray-300 opacity-80 min-w-[500] "
+      className="flex-col items-center justify-center content-center bg-light font-semibold rounded-xl  shadow-md shadow-gray-700 px-12 py-6 border-4 border-primary opacity-80 min-w-[500] "
     >
       <div style={{ marginBottom: 16 }}>
-        <h1 className="text-center font-extrabold ">{title}</h1>
+        <h1 className="text-left font-extrabold text-primary text-4xl ">{title}</h1>
       </div>
       {children}
     </div>

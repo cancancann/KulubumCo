@@ -2,8 +2,10 @@ import React from 'react';
 import { Button as BaseButton } from '@mui/material';
 import Spinner from '../Spinner';
 import { default as BaseIconButton } from '@mui/material/IconButton';
+import styles from './button.module.scss';
+import cn from 'classnames';
 
-function Button({ children, disabled, loading, style, ...otherProps }) {
+function Button({ children, disabled, loading, style, className, variant = 'contained', ...otherProps }) {
   const child = loading ? <Spinner /> : children;
   const isDisabled = loading || disabled;
 
@@ -13,12 +15,22 @@ function Button({ children, disabled, loading, style, ...otherProps }) {
     alignItems: 'center',
   };
 
-  const buttonStyle = { ...style, ...(loading ? loadingStyle : style) };
+  const buttonStyle = {
+    ...style,
+    ...(loading ? loadingStyle : style),
+    color: '#fff',
+  };
 
   return (
-    <BaseButton {...otherProps} style={buttonStyle} disabled={isDisabled}>
+    <button
+      {...otherProps}
+      variant={variant}
+      className={cn(className, styles.button)}
+      style={buttonStyle}
+      disabled={isDisabled}
+    >
       {child}
-    </BaseButton>
+    </button>
   );
 }
 

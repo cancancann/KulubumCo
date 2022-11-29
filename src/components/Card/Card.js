@@ -13,9 +13,9 @@ const Card = ({ children, style, className }) => {
   );
 };
 
-const CardImage = ({ photo, alt }) => {
+const CardImage = ({ photo, alt,className, ...others }) => {
   return (
-    <div className={styles.cardImage}>
+    <div {...others} className={cn(styles.cardImage,className)}>
       <img alt={alt} src={photo} />
     </div>
   );

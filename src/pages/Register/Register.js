@@ -1,4 +1,3 @@
-import { Button } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -6,6 +5,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import EmailIcon from '@mui/icons-material/Email';
 import PeopleIcon from '@mui/icons-material/People';
 
+import Button from '../../components/Button';
 import { useNavigate } from 'react-router';
 import { useSnackbar } from 'notistack';
 import Form, { FormInput, FormInfo, FormControl, FormPageWrapper } from '../../components/Form/Form';
@@ -32,7 +32,7 @@ const Register = ({ ...props }) => {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
-  const onSaveClick = async (values) => {
+  const onSaveClick = (values) => {
     api.auth
       .register(values)
       .then((res) => {
@@ -87,12 +87,7 @@ const Register = ({ ...props }) => {
               onChange={(e) => formik.setFieldValue('Department', e.target.value)}
             />
 
-            <Button
-              style={{ borderRadius: '10px', color: 'black', borderColor: 'black', backgroundColor: '#02A28F' }}
-              className="w-full opacity-100"
-              onClick={formik.handleSubmit}
-              variant="contained"
-            >
+            <Button className="w-full opacity-100" onClick={formik.handleSubmit} variant="contained">
               {formik.isSubmitting ? 'Submitting...' : 'Register'}
             </Button>
             <FormInfo>

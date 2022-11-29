@@ -7,6 +7,7 @@ import paths from '../../Router/paths';
 import { Link } from 'react-router-dom';
 import Menu from '../Menu/Menu';
 import Button from '../Button';
+import Dropdown from '../Dropdown/Dropdown';
 import { useState } from 'react';
 
 const navItems = [
@@ -16,10 +17,10 @@ const navItems = [
   },
   {
     title: 'Universiteler',
-    path: paths.home.default,
+    path: paths.home.universities,
   },
   {
-    title: 'Klüpler',
+    title: 'Kulüpler',
     path: paths.home.detailclub,
   },
 
@@ -63,7 +64,7 @@ const Navbar = () => {
           <div className={styles.navbarItems}>
             {navItems.map((item) => (
               <Link to={item.path} key={item}>
-                <Button sx={{ color: '#fff' }}>{item.title}</Button>
+                <Button variant="contained">{item.title}</Button>
               </Link>
             ))}
             {/* Search */}
@@ -84,24 +85,7 @@ const Navbar = () => {
             }
             active={active}
           >
-            <div className={styles.navbarMenu}>
-              {/* Image section */}
-              <div className={styles.navbarMenuAvatar}>
-                <img src={avatar} alt="user" />
-              </div>
-              {/* Name */}
-              <div className={styles.navbarMenuTitle}>Hikmet Can Öyke</div>
-              {/* Buttons */}
-              <div className={styles.navbarMenuLinks}>
-                {menuItems.map((item) => (
-                  <Link to={item.path}>{item.title}</Link>
-                ))}
-
-                <Button variant="primary" onClick={() => setActive(false)}>
-                  Çıkış Yap
-                </Button>
-              </div>
-            </div>
+            <Dropdown avatar={avatar} setActive={setActive} />
           </Menu>
         </div>
       </div>

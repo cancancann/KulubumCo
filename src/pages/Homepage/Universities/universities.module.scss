@@ -1,0 +1,21 @@
+@import '../../../styles/variables.scss';
+
+.universities {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &Title{
+        margin-top: auto;
+    }
+
+    &Content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+        margin-top: 1rem;
+    }
+}
+

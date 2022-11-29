@@ -58,3 +58,9 @@
     }
   }
 }
+.postModal {
+  background-color: $color-light;
+  padding: 2rem 4rem;
+  width: min(100%, calc($container-size * 2));
+  margin: auto;
+}

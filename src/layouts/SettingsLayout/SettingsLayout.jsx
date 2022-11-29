@@ -27,7 +27,7 @@ const sidebarLinks = [
   },
   {
     text: 'Kulüp Ekle ',
-    path: paths.settings.addClub
+    path: paths.settings.addClub,
   },
   {
     text: 'Password & Security',
@@ -69,7 +69,7 @@ const SettingsLayout = () => {
                 }
               >
                 {/* Menü tasarımı burada olacak */}
-                <Dropdown avatar={avatar} />
+                <Dropdown avatar={avatar} setActive={setActive} />
               </Menu>
             </div>
           </div>

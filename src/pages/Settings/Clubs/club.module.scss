@@ -8,11 +8,11 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
-    // justify-content: space-between;
-    justify-content: center;
+    justify-content: space-between;
+    // justify-content: center;
     margin-bottom: 1.5rem;
   }
-  &Not{
+  &Not {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,13 +21,16 @@
     background: rgba(2, 162, 143, 0.1);
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-
-    h3{
+    &Container {
+      display: flex;
+      justify-content: center;
+    }
+    h3 {
       padding-inline: 2rem;
       font-weight: 700;
       font-size: 35px;
       line-height: 40px;
-      color: #02A28F;
+      color: #02a28f;
       text-align: center;
     }
   }

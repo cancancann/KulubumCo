@@ -1,15 +1,14 @@
-import Button from '@mui/material/Button';
 import React from 'react';
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import Form, { FormInput, FormPageWrapper } from '../../components/Form/Form';
+import Form, { FormInput, FormPageWrapper, FormInfo } from '../../components/Form/Form';
+import Button from '../../components/Button';
+
 import { Formik } from 'formik';
 import api from '../../api';
 import { loginSchema } from '../../schemas/auth';
-import ColoredLine from '../../components/ColoredLine/ColoredLine';
-import GoogleIcon from '@mui/icons-material/Google';
 import paths from '../../Router/paths';
 
 const inputs = [
@@ -44,8 +43,7 @@ const Login = ({ ...props }) => {
         }
       })
       .catch((err) => {
-        enqueueSnackbar('Giriş Hatalı !!', { variant: 'error' });
-        enqueueSnackbar(err?.response?.data?.message, { variant: 'error' });
+        enqueueSnackbar(err?.response?.data?.message || 'Beklenmedik bir hata oluştu!', { variant: 'error' });
       });
   };
 
@@ -67,37 +65,20 @@ const Login = ({ ...props }) => {
               />
             ))}
             <div>
-              <Button
-                style={{
-                  borderRadius: '10px',
-                  color: 'white',
-                  borderColor: 'black',
-                  backgroundColor: '#02A28F',
-                  marginTop: '1.5rem',
-                }}
-                className="w-full"
-                onClick={formik.handleSubmit}
-                variant="contained"
-              >
+              <Link to={paths.forgotPassword} className="text-sky-500  w-full text-right block mt-2">
+                Şifremi unutttum?
+              </Link>
+              <Button className="w-full mt-5" onClick={formik.handleSubmit} variant="contained">
                 Log In
               </Button>
             </div>
-            <ColoredLine text="Or" />
             <div>
-              <Button
-                style={{
-                  borderRadius: '15px',
-                  color: 'white',
-                  borderColor: 'black',
-                  backgroundColor: '#1A1B22',
-                  marginTop: '1rem',
-                }}
-                className="w-full"
-                variant="contained"
-                startIcon={<GoogleIcon />}
-              >
-                sign-in with Google
-              </Button>
+              <FormInfo>
+                Don't have account?
+                <Link to={paths.register} className="ml-2 !text-sky-500">
+                  Register
+                </Link>
+              </FormInfo>
             </div>
           </Form>
         )}
