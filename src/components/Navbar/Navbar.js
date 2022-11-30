@@ -21,7 +21,7 @@ const navItems = [
   },
   {
     title: 'Kulüpler',
-    path: paths.home.detailclub,
+    path: paths.home.clubs,
   },
 
   {

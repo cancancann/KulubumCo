@@ -1,54 +1,105 @@
 import React from 'react'
-import styles from './layout.module.scss';
-import avatar from '../../asset/avatar.png';
-import { Outlet } from 'react-router-dom';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import styles from './detail.module.scss';
+import photo from '../../asset/clubs3.jpg'
+import { Link } from 'react-router-dom';
+import Card from '../../components/Card/Card';
+import horsePhoto from '../../asset/image_5.png';
+
+
+
 
 
 const DetailClub = () => {
+    const introStyle = {
+        background: `url(${photo})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+      };
+    
     return (
-        <>
-            <div className={styles.navbar}>
-                {/* Leftside */}
-                <div className={styles.navbarSetting}>
-                    Setting
+        <main>
+            <section className={styles.detailIntro} style={introStyle}>
+                <div className={styles.detailIntroContent}>
+                    <h1>Atcılık Kulubü</h1>
+                    <h2>Çukurova Üniversitesi</h2>
                 </div>
-                {/* rigtside */}
-                <div className={styles.navbarAvatar}>
-                    <div className={styles.notification}>
-                        <NotificationsIcon />
-                    </div>
-                    <div>
-                        <img src={avatar} alt="User" />
-                    </div>
-                    <div className={styles.expandmore}>
-                        <ExpandMoreIcon />
-                    </div>
-
+            </section>
+            {/* ICERİK */}
+            <section className={styles.detailContent}>
+                {/* DUYURULAR */}
+                <div className={styles.detailContentNav}>
+                    <h1>Duyurular</h1>
+                    <Link>Daha fazlası için tıklayınız...</Link>
                 </div>
-            </div>
-            <div className={styles.layout}>
-                <div className={styles.layoutTitle}>
-                    <div className={styles.layoutColor}></div>
-                    <div className={styles.layoutContent}>
-                        {/* image */}
-                        <h2>Ulaş Öztürk</h2>
-                        <p>Your account is ready</p>
-                    </div>
+                {/* CONTENT */}
+                <div className={styles.detailContentFeed}>
+                    <Card>
+                        <Card.Img photo={horsePhoto} />
+                        <Card.Body>
+                            <Card.Label>In Label</Card.Label>
+                            <Card.Title>Cukurova Universitesi</Card.Title>
+                            <Card.Owner>
+                                <b>By </b>
+                                Okçuluk Kulubü
+                            </Card.Owner>
+                            <Card.Caption>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                                industry's standard dummy
+                            </Card.Caption>
+                            <Card.Date>22 Agustus 2022</Card.Date>
+                        </Card.Body>
+                    </Card>
+                    <Card>
+                        <Card.Img photo={horsePhoto} />
+                        <Card.Body>
+                            <Card.Label>In Label</Card.Label>
+                            <Card.Title>Cukurova Universitesi</Card.Title>
+                            <Card.Owner>
+                                <b>By </b>
+                                Okçuluk Kulubü
+                            </Card.Owner>
+                            <Card.Caption>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                                industry's standard dummy
+                            </Card.Caption>
+                            <Card.Date>22 Agustus 2022</Card.Date>
+                        </Card.Body>
+                    </Card>
+                    <Card>
+                        <Card.Img photo={horsePhoto} />
+                        <Card.Body>
+                            <Card.Label>In Label</Card.Label>
+                            <Card.Title>Cukurova Universitesi</Card.Title>
+                            <Card.Owner>
+                                <b>By </b>
+                                Okçuluk Kulubü
+                            </Card.Owner>
+                            <Card.Caption>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                                industry's standard dummy
+                            </Card.Caption>
+                            <Card.Date>22 Agustus 2022</Card.Date>
+                        </Card.Body>
+                    </Card>
+                    <Card>
+                        <Card.Img photo={horsePhoto} />
+                        <Card.Body>
+                            <Card.Label>In Label</Card.Label>
+                            <Card.Title>Cukurova Universitesi</Card.Title>
+                            <Card.Owner>
+                                <b>By </b>
+                                Okçuluk Kulubü
+                            </Card.Owner>
+                            <Card.Caption>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                                industry's standard dummy
+                            </Card.Caption>
+                            <Card.Date>22 Agustus 2022</Card.Date>
+                        </Card.Body>
+                    </Card>
                 </div>
-                <div className={styles.layoutMain}>
-                    <div className={styles.layoutMainEdit}>
-                        right side
-                    </div>
-                    <div className={styles.layoutMainOutle}>
-                        leftside
-                        <Outlet />
-                    </div>
-                </div>
-            </div>
-
-        </>
+            </section>
+        </main>
     )
 }
 

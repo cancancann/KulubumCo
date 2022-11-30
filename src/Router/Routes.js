@@ -15,6 +15,7 @@ import Follows from '../pages/Settings/Follows/Follows';
 import AddClub from '../pages/Settings/AddClub/AddClub';
 import ForgotPassword from './../pages/ForgotPassword/ForgotPassword';
 import Universities from '../pages/Homepage/Universities/Universities';
+import DetailClub from '../pages/DetailClub/DetailClub';
 
 const Router = () => {
   const routes = useRoutes([
@@ -27,13 +28,17 @@ const Router = () => {
           element: <HomePage />,
         },
         {
-          path: paths.home.detailclub,
+          path: paths.home.clubs,
           element: <ClubsPage />,
         },
         {
           path:paths.home.universities,
           element:<Universities />
-        }
+        },
+        {
+          path: paths.home.detailClub,
+          element: <DetailClub />,
+        },
       ],
     },
     {

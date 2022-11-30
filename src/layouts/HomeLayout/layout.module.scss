@@ -8,8 +8,7 @@ $sidebar-width: 500px;
 
   &Container {
     display: flex;
-    width: min(100%, $container-size);
-    margin-inline: auto;
+    @extend .container;
   }
   &Content,
   &Sidebar {
