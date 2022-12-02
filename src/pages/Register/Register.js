@@ -1,6 +1,5 @@
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 import EmailIcon from '@mui/icons-material/Email';
 import PeopleIcon from '@mui/icons-material/People';
@@ -19,32 +18,37 @@ import paths from '../../Router/paths';
 
 const initialFormValues = {
   Username: '',
-  Password: '',
+  Userpassword: '',
   Email: '',
   PasswordConfirm: '',
-  BirthOfDate: '',
-  Gender: '',
-  University: '',
-  Department: '',
+  Universite: '',
 };
 
 const Register = ({ ...props }) => {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
+
   const onSaveClick = (values) => {
+    //frontta baktıp backend istemiyor datayı
+    const body ={
+      Username:values.Username,
+      Userpassword:values.Userpassword,
+      Email:values.Email,
+      Universite:values.Universite
+    }
     api.auth
-      .register(values)
+      .register(body)
       .then((res) => {
         if (res?.data?.success) {
           enqueueSnackbar(res?.data?.message, { variant: 'success' });
-          navigate('/home');
+          navigate(paths.home.default);
         }
       })
       .catch((err) => {
-        enqueueSnackbar('Kayıtta Hata Oluştu!!', { variant: 'error' });
         enqueueSnackbar(err?.response?.data?.message, { variant: 'error' });
       });
+     
   };
 
   return (
@@ -52,42 +56,52 @@ const Register = ({ ...props }) => {
       <Formik initialValues={initialFormValues} onSubmit={onSaveClick} validationSchema={registerSchema}>
         {(formik) => (
           <Form title="Register">
-            {inputs.map((input, key) => (
-              <FormInput
-                key={key}
-                {...input}
-                onChange={formik.handleChange}
-                value={formik.values[input.name]}
-                error={formik.errors[input.name]}
-                helperText={formik.errors[input.name]}
-              />
-            ))}
+            <FormInput value={formik.values.Username}
+              onChange={formik.handleChange}
+              name='Username'
+              error={formik.errors.Username}
+              helperText={formik.errors.Username}
+              type='text'
+              icon={PersonIcon} placeholder='Enter your Username' />
+
+            <FormInput value={formik.values.Email}
+              onChange={formik.handleChange}
+              name='Email'
+              error={formik.errors.Email}
+              helperText={formik.errors.Email}
+              type='email'
+              icon={EmailIcon} 
+              placeholder='Enter your Email'/>
+
+            <FormInput value={formik.values.Userpassword}
+              onChange={formik.handleChange}
+              name='Userpassword'
+              error={formik.errors.Userpassword}
+              helperText={formik.errors.Userpassword}
+              type='password'
+              icon={LockIcon} 
+              placeholder='Enter your Password'/>
+
+            <FormInput value={formik.values.PasswordConfirm}
+              onChange={formik.handleChange}
+              name='PasswordConfirm'
+              error={formik.errors.PasswordConfirm}
+              helperText={formik.errors.PasswordConfirm}
+              type='password'
+              icon={LockIcon} 
+              placeholder='Şifreyi Tekrar Gİriniz..'/>
 
             <FormControl
-              label="Gender"
-              name="Gender"
-              error={formik.errors.Gender}
-              icon={PeopleIcon}
-              items={genderOptions}
-              onChange={(e) => formik.setFieldValue('Gender', e.target.value)}
-            />
-            <FormControl
-              label="University"
-              name="University"
+              label="Universite"
+              name="Universite"
               icon={PeopleIcon}
               items={universityOptions}
-              error={formik.errors.University}
-              onChange={(e) => formik.setFieldValue('University', e.target.value)}
-            />
-            <FormControl
-              label="Department"
-              name="Department"
-              icon={PeopleIcon}
-              items={departmentOptions}
-              onChange={(e) => formik.setFieldValue('Department', e.target.value)}
+              error={formik.errors.Universite}
+              onChange={(e) => formik.setFieldValue('Universite', e.target.value)}
             />
 
-            <Button className="w-full opacity-100" onClick={formik.handleSubmit} variant="contained">
+
+            <Button className="w-full opacity-100" onClick={formik.handleSubmit} variant="contained" type="submit">
               {formik.isSubmitting ? 'Submitting...' : 'Register'}
             </Button>
             <FormInfo>
@@ -105,49 +119,7 @@ const Register = ({ ...props }) => {
 
 export default Register;
 
-const inputs = [
-  {
-    icon: PersonIcon,
-    name: 'Username',
-    label: 'Username',
-    type: 'text',
-  },
-  {
-    icon: LockIcon,
-    name: 'Password',
-    label: 'Password',
-    type: 'password',
-  },
-  {
-    icon: LockIcon,
-    name: 'PasswordConfirm',
-    label: 'PasswordConfirm',
-    type: 'password',
-  },
-  {
-    icon: EmailIcon,
-    name: 'Email',
-    label: 'Email',
-    type: 'email',
-  },
-  {
-    icon: CalendarMonthIcon,
-    name: 'BirthOfDate',
-    label: 'Doğum tarihi',
-    type: 'date',
-  },
-];
 
-const genderOptions = [
-  {
-    value: 'Male',
-    label: 'Male',
-  },
-  {
-    value: 'Female',
-    label: 'Female',
-  },
-];
 const universityOptions = [
   {
     value: 'CU',
@@ -161,20 +133,5 @@ const universityOptions = [
   {
     value: 'ODTU',
     label: ' Middle East Technic University',
-  },
-];
-const departmentOptions = [
-  {
-    value: 'CENG',
-    label: 'Computer Engineering',
-  },
-
-  {
-    value: 'EEENG',
-    label: 'Electric Electronic Engineering',
-  },
-  {
-    value: 'MENG',
-    label: ' Mechanic Engineering',
   },
 ];

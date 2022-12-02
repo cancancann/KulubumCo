@@ -20,7 +20,7 @@ const inputs = [
   },
   {
     icon: LockIcon,
-    name: 'Password',
+    name: 'Userpassword',
     label: 'Password',
     type: 'password',
   },
@@ -31,9 +31,9 @@ const Login = ({ ...props }) => {
   const { enqueueSnackbar } = useSnackbar();
   const initialFormValues = {
     Username: '',
-    Password: '',
+    Userpassword: '',
   };
-  const onSaveClick = async (values) => {
+  const onSaveClick = (values) => {
     api.auth
       .login(values)
       .then((res) => {

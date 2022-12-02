@@ -43,6 +43,7 @@
 
       input {
         width: 100%;
+        
         @extend .input;
       }
     }
@@ -72,10 +73,11 @@
   font-weight: 700;
   color: #083a50;
   margin-bottom: 0.25rem;
+  font-size: 14px;
 }
 
 .input {
-  padding: 12px;
+  padding: 6px;
   outline: none;
   border: 1px solid #caced8;
   border-radius: 0.5rem;

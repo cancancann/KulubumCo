@@ -6,12 +6,12 @@ function Form({ children, title }) {
   return (
     <div
       style={{
-        minWidth: 450,
+        width:"min(100%,500px)",
       }}
       className="flex-col items-center justify-center content-center bg-light font-semibold rounded-xl  shadow-md shadow-gray-700 px-12 py-6 border-4 border-primary opacity-80 min-w-[500] "
     >
       <div style={{ marginBottom: 16 }}>
-        <h1 className="text-left font-extrabold text-primary text-4xl ">{title}</h1>
+        <h1 className="text-left font-extrabold text-primary text-3xl ">{title}</h1>
       </div>
       {children}
     </div>
@@ -40,7 +40,7 @@ function FormInput({ icon: Icon, ...otherProps }) {
       <div style={{ marginRight: 10 }}>
         <Icon />
       </div>
-      <TextField {...otherProps} className="w-full" />
+      <TextField size='small'style={{paddingBlock:"6px"}} {...otherProps} className="w-full" />
     </div>
   );
 }
