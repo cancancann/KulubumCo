@@ -1,14 +1,15 @@
 import styles from './form.module.scss';
+import cn from 'classnames';
 
 const SettingsTitle = ({ text }) => {
   return <h1 className={styles.settingsTitle}>{text}</h1>;
 };
 
-const SettingsInput = ({ label, type = 'text', placeholder, value, onChange }) => {
+const SettingsInput = ({ name, className, label, type = 'text', placeholder, value, onChange }) => {
   return (
-    <div className={styles.formInput}>
+    <div className={cn(styles.formInput, className)}>
       <label>{label}</label>
-      <input type={type} placeholder={placeholder} value={value} onChange={onChange} />
+      <input name={name} type={type} placeholder={placeholder} value={value} onChange={onChange} />
     </div>
   );
 };
@@ -46,12 +47,22 @@ const SettingsPhoneSelect = ({ label, placeholder, options = [] }) => {
   );
 };
 
-const SettingsSubmitButton = ({ children, disabled, style }) => {
+const SettingsTextarea = ({ placeholder, value, name, onChange, label }) => {
   return (
-    <button className={styles.formSubmit} disabled={disabled} style={style}>
+    <div className={styles.formTextarea}>
+      <label>{label}</label>
+      <textarea placeholder={placeholder} name={name} onChange={onChange} value={value} />
+    </div>
+
+  )
+}
+
+const SettingsSubmitButton = ({ onClick,children, disabled, style }) => {
+  return (
+    <button onClick={onClick} className={styles.formSubmit} disabled={disabled} style={style}>
       {children}
     </button>
   );
 };
 
-export { SettingsInput, SettingsSelect, SettingsSubmitButton, SettingsPhoneSelect, SettingsTitle };
+export { SettingsInput, SettingsSelect, SettingsSubmitButton, SettingsPhoneSelect, SettingsTitle, SettingsTextarea };

@@ -6,7 +6,10 @@ const registerSchema = yup.object({
     .min(5, 'Kullanıcı adı en az 5 karakter olmalıdır')
     .max(20, 'Kullanıcı adı maximum 20 karakter olmalıdır.')
     .required('Kullanıcı adı boş geçilemez!'),
-  Userpassword: yup.string().min(8, 'Şifre en az 8 karakter olmalıdır!').max(20, 'Şifre maximum 20 karakter olabilir!'),
+  Userpassword: yup.string()
+  .min(8, 'Şifre en az 8 karakter olmalıdır!')
+  .max(20, 'Şifre maximum 20 karakter olabilir!')
+  .required("Lütfen şifrenizi giriniz"),
   PasswordConfirm: yup
     .string()
     .oneOf([yup.ref('Userpassword'), null], 'Şifreler eşleşmiyor!')

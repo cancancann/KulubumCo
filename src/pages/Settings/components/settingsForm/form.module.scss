@@ -48,6 +48,18 @@
       }
     }
   }
+  &Textarea {
+    display: flex;
+    flex-direction: column;
+    label{
+      @extend .label;
+    }
+    textarea{
+      @extend .input;
+      resize: none;
+      min-height: 150px;
+    }
+  }
 
   &Submit {
     padding-block: 0.875rem;

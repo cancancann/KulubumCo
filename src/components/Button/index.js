@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button as BaseButton } from '@mui/material';
 import Spinner from '../Spinner';
 import { default as BaseIconButton } from '@mui/material/IconButton';
 import styles from './button.module.scss';

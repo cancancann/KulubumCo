@@ -62,7 +62,7 @@ const HomePage = () => {
             </Card.Caption>
             <Card.Date>22 Agustus 2022</Card.Date>
           </Card.Body>
-        </Card>
+        </Card> 
       </Modal>
       {/* Intro */}
       <section className={styles.homeIntro} style={introStyle}>
