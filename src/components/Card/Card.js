@@ -2,12 +2,12 @@ import React from 'react';
 import styles from './card.module.scss';
 import cn from 'classnames';
 
-const Card = ({ children, style, className }) => {
+const Card = ({ key, children, style, className }) => {
   const cardStyle = {
     ...style,
   };
   return (
-    <div className={cn(styles.card, className)} style={cardStyle}>
+    <div key={key} className={cn(styles.card, className)} style={cardStyle}>
       {children}
     </div>
   );

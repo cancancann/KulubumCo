@@ -57,9 +57,9 @@ const SettingsTextarea = ({ placeholder, value, name, onChange, label }) => {
   )
 }
 
-const SettingsSubmitButton = ({ onClick,children, disabled, style }) => {
+const SettingsSubmitButton = ({type,onClick,children, disabled, style }) => {
   return (
-    <button onClick={onClick} className={styles.formSubmit} disabled={disabled} style={style}>
+    <button onClick={onClick} className={styles.formSubmit} disabled={disabled}  type={type} style={style}>
       {children}
     </button>
   );
