@@ -5,14 +5,12 @@
 
   &Container {
     width: 100%;
-    &Card{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: space-between;
-      // justify-content: center;
-      margin-bottom: 1.5rem;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-between;
+    // justify-content: center;
+    margin-bottom: 1.5rem;
   }
   
   &Title {

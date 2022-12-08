@@ -8,6 +8,7 @@ const paths = {
   login: '/login',
   register: '/register',
   forgotPassword: '/forgotPassword',
+  resetPassword:'/resetPassword',
   settings: {
     default: '/settings',
     password: `/settings/password`,

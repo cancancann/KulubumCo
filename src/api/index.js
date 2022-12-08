@@ -18,6 +18,7 @@ const api = {
 
   universities: {
     list: () => API.get('/university'),
+    getUniversity: (id) => API.get(`/university/${id}`)
   },
 };
 

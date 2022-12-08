@@ -16,6 +16,7 @@ import AddClub from '../pages/Settings/AddClub/AddClub';
 import ForgotPassword from './../pages/ForgotPassword/ForgotPassword';
 import Universities from '../pages/Homepage/Universities/Universities';
 import DetailClub from '../pages/DetailClub/DetailClub';
+import ResetPassword from '../pages/ResetPassword/ResetPassword';
 
 const Router = () => {
   const routes = useRoutes([
@@ -56,6 +57,10 @@ const Router = () => {
     {
       path: paths.forgotPassword,
       element: <ForgotPassword />,
+    },
+    {
+      path: paths.resetPassword,
+      element: <ResetPassword />
     },
     {
       path: paths.settings.default,
