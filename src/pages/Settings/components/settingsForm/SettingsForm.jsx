@@ -5,11 +5,19 @@ const SettingsTitle = ({ text }) => {
   return <h1 className={styles.settingsTitle}>{text}</h1>;
 };
 
-const SettingsInput = ({ name, className, label, type = 'text', placeholder, value, onChange }) => {
+const SettingsInput = ({ name, className, label, type = 'text', placeholder, value, onChange, error }) => {
   return (
     <div className={cn(styles.formInput, className)}>
       <label>{label}</label>
-      <input name={name} type={type} placeholder={placeholder} value={value} onChange={onChange} />
+      <input
+        name={name}
+        type={type}
+        variant={error && 'error'}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+      />
+      <span className={styles.error}>{error}</span>
     </div>
   );
 };
@@ -47,22 +55,34 @@ const SettingsPhoneSelect = ({ label, placeholder, options = [] }) => {
   );
 };
 
-const SettingsTextarea = ({ placeholder, value, name, onChange, label }) => {
+const SettingsTextarea = ({ placeholder, value, name, onChange, label, error }) => {
   return (
     <div className={styles.formTextarea}>
       <label>{label}</label>
-      <textarea placeholder={placeholder} name={name} onChange={onChange} value={value} />
+      <textarea placeholder={placeholder} variant={error && 'error'} name={name} onChange={onChange} value={value} />
+      <span className={styles.error}>{error}</span>
     </div>
+  );
+};
 
-  )
-}
-
-const SettingsSubmitButton = ({type,onClick,children, disabled, style }) => {
+const SettingsSubmitButton = ({ type, onClick, children, disabled, style }) => {
   return (
-    <button onClick={onClick} className={styles.formSubmit} disabled={disabled}  type={type} style={style}>
+    <button onClick={onClick} className={styles.formSubmit} disabled={disabled} type={type} style={style}>
       {children}
     </button>
   );
 };
 
-export { SettingsInput, SettingsSelect, SettingsSubmitButton, SettingsPhoneSelect, SettingsTitle, SettingsTextarea };
+const SettingsResponse = ({ message, success }) => {
+  return <div style={{ color: success ? 'green' : 'red' }}>{message}</div>;
+};
+
+export {
+  SettingsInput,
+  SettingsSelect,
+  SettingsSubmitButton,
+  SettingsPhoneSelect,
+  SettingsTitle,
+  SettingsTextarea,
+  SettingsResponse,
+};

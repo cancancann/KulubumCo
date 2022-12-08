@@ -43,7 +43,7 @@
 
       input {
         width: 100%;
-        
+
         @extend .input;
       }
     }
@@ -51,10 +51,10 @@
   &Textarea {
     display: flex;
     flex-direction: column;
-    label{
+    label {
       @extend .label;
     }
-    textarea{
+    textarea {
       @extend .input;
       resize: none;
       min-height: 150px;
@@ -62,13 +62,14 @@
   }
 
   &Submit {
-    padding-block: 0.875rem;
+    padding-block: 0.5rem;
     background-color: #26b893;
-    padding-inline: 3rem;
+    padding-inline: 2rem;
     font-weight: 700;
     color: white;
     border-radius: 0.5rem;
     transition: 300ms;
+    font-size: 0.875rem;
     &:not(:disabled) {
       &:hover {
         background-color: #083a50;
@@ -97,7 +98,11 @@
     border-color: #26b893;
     @extend .shadow;
   }
+  &[variant='error'] {
+    border-color: red !important;
+  }
 }
+
 .select {
   border: 1px solid #caced8;
   border-radius: 0.5rem;
@@ -107,6 +112,11 @@
     @extend .shadow;
   }
 }
+
+.error {
+  color: red;
+}
+
 .shadow {
   box-shadow: -1px -1px 4px rgba(38, 184, 147, 0.2), 2px 2px 4px rgba(38, 184, 147, 0.1);
 }

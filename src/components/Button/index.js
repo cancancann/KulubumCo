@@ -4,7 +4,7 @@ import { default as BaseIconButton } from '@mui/material/IconButton';
 import styles from './button.module.scss';
 import cn from 'classnames';
 
-function Button({ children, disabled, loading, style, className, variant = 'contained', ...otherProps }) {
+function Button({ onClick,children, disabled, loading, style, className, variant = 'contained', ...otherProps }) {
   const child = loading ? <Spinner /> : children;
   const isDisabled = loading || disabled;
 
@@ -27,6 +27,7 @@ function Button({ children, disabled, loading, style, className, variant = 'cont
       className={cn(className, styles.button)}
       style={buttonStyle}
       disabled={isDisabled}
+      onClick={onClick}
     >
       {child}
     </button>
