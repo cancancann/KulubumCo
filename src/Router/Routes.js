@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRoutes } from 'react-router-dom';
 import HomePage from '../pages/Homepage/Homepage';
 import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
@@ -17,78 +16,90 @@ import ForgotPassword from './../pages/ForgotPassword/ForgotPassword';
 import Universities from '../pages/Homepage/Universities/Universities';
 import DetailClub from '../pages/DetailClub/DetailClub';
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
+import PrivateRoute from '../layouts/PrivateRoute/PrivateRoute';
+import NotFound from '../pages/NotFound/NotFound';
 
-const Router = () => {
-  const routes = useRoutes([
-    {
-      path: '/home',
-      element: <HomeLayout />,
-      children: [
-        {
-          index: true,
-          element: <HomePage />,
-        },
-        {
-          path: paths.home.clubs,
-          element: <ClubsPage />,
-        },
-        {
-          path:paths.home.universities,
-          element:<Universities />
-        },
-        {
-          path: paths.home.detailClub,
-          element: <DetailClub />,
-        },
-      ],
-    },
-    {
-      path: paths.register,
-      element: <Register />,
-    },
-    {
-      path: paths.login,
-      element: <Login />,
-    },
-    {
-      path: '*',
-      element: <Login />,
-    },
-    {
-      path: paths.forgotPassword,
-      element: <ForgotPassword />,
-    },
-    {
-      path: paths.resetPassword,
-      element: <ResetPassword />
-    },
-    {
-      path: paths.settings.default,
-      element: <SettingsLayout />,
-      children: [
-        {
-          index: true,
-          element: <ProfileSettings />,
-        },
-        {
-          path: paths.settings.password,
-          element: <PasswordSecurity />,
-        },
-        {
-          path: paths.settings.clubs,
-          element: <Clubs />,
-        },
-        {
-          path: paths.settings.follows,
-          element: <Follows />,
-        },
-        {
-          path: paths.settings.addClub,
-          element: <AddClub />,
-        },
-      ],
-    },
-  ]);
-  return routes;
-};
-export default Router;
+const routes = [
+  {
+    path: paths.home.default,
+    element: <HomeLayout />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      {
+        path: paths.home.clubs,
+        element: <ClubsPage />,
+      },
+      {
+        path: paths.home.universities,
+        element: <Universities />,
+      },
+      {
+        path: paths.home.detailClub,
+        element: <DetailClub />,
+      },
+    ],
+  },
+  {
+    path: paths.register,
+    element: <Register />,
+  },
+  {
+    path: paths.login,
+    element: <Login />,
+  },
+  {
+    path: '*',
+    element: <NotFound />,
+  },
+  {
+    path: paths.forgotPassword,
+    element: <ForgotPassword />,
+  },
+  {
+    path: paths.resetPassword,
+    element: <ResetPassword />,
+  },
+  {
+    path: paths.settings.default,
+    element: <SettingsLayout />,
+    auth: true,
+    children: [
+      {
+        index: true,
+        element: <ProfileSettings />,
+      },
+      {
+        path: paths.settings.password,
+        element: <PasswordSecurity />,
+      },
+      {
+        path: paths.settings.clubs,
+        element: <Clubs />,
+      },
+      {
+        path: paths.settings.follows,
+        element: <Follows />,
+      },
+      {
+        path: paths.settings.addClub,
+        element: <AddClub />,
+      },
+    ],
+  },
+];
+
+const authMap = (routes) =>
+  routes.map((route) => {
+    if (route?.auth) {
+      route.element = <PrivateRoute>{route.element}</PrivateRoute>;
+    }
+    if (route?.children) {
+      route.children = authMap(route.children);
+    }
+    return route;
+  });
+
+export default authMap(routes);

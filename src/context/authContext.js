@@ -1,16 +1,41 @@
-import { createContext, useContext } from 'react';
+import jwtDecode from 'jwt-decode';
+import { createContext, useContext, useEffect, useState } from 'react';
+import Cookies from 'universal-cookie';
 
 const AuthContext = createContext();
 
+const KLUBUMCO_TOKEN = 'KulubumCo';
+
 const AuthProvider = ({ children }) => {
-  const values = {};
+  const [user, setUser] = useState({});
+  const cookieToken = new Cookies().get(KLUBUMCO_TOKEN);
+  const [token, setToken] = useState(cookieToken);
+
+  useEffect(() => {
+    try {
+      const res = jwtDecode(token);
+      setUser(res);
+    } catch (error) {
+      setUser({});
+    }
+  }, [token]);
+
+  const isAuth = !!Object.keys(user).length;
+
+  const invalidateCookie = () => {
+    const newToken = new Cookies().get(KLUBUMCO_TOKEN);
+    setToken(newToken);
+  };
+
+  const values = { user, setUser, invalidateCookie, isAuth };
+
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
 
 const useAuth = () => {
   const context = useContext(AuthContext);
   // !! Booleane cevirmek icin kullanılır.
-  return { ...context, isAuth: Boolean(Object.keys(context).length) };
+  return context;
 };
 
 export { useAuth };

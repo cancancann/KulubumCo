@@ -3,6 +3,9 @@ import { Link, Outlet } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import styles from './layout.module.scss';
 import Footer from './../../components/Footer/Footer';
+import paths from '../../Router/paths';
+import { useDataContext } from '../../context/dataContext';
+import { useState } from 'react';
 
 const HomeLayout = () => {
   return (
@@ -18,14 +21,7 @@ const HomeLayout = () => {
             <div className={styles.layoutSidebarContainer}>
               <div className={styles.layoutSidebarTitle}>Kategori</div>
               {/* Contents */}
-              <div className={styles.layoutSidebarContent}>
-                {categories.map((category, key) => (
-                  <Link key={key} className={styles.layoutSidebarItem} to={'/login'}>
-                    <p>{category.name}</p>
-                    <span>({category.count})</span>
-                  </Link>
-                ))}
-              </div>
+              <Categories />
             </div>
             {/* Banner */}
             <div className={styles.layoutBanner}>
@@ -43,21 +39,33 @@ const HomeLayout = () => {
 
 export default HomeLayout;
 
-const categories = [
-  {
-    name: 'Marmara Universitesi',
-    count: 5,
-  },
-  {
-    name: 'Cukurova Universitesi',
-    count: 12,
-  },
-  {
-    name: 'Adıyaman Universitesi',
-    count: 100,
-  },
-  {
-    name: 'Mersin Universitesi',
-    count: 300,
-  },
-];
+const Categories = () => {
+  const data = useDataContext();
+  const [page, setPage] = useState(1);
+  const limit = 10;
+
+  const universities = data?.universities.slice((page - 1) * limit, page * limit);
+
+  const hasMore = data?.universities?.length > limit * page;
+
+  return (
+    <div className={styles.layoutSidebarContent}>
+      {universities.map((university) => (
+        <Link key={university?.UniversityId} className={styles.layoutSidebarItem} to={paths.login}>
+          <p>{university.UniversityName}</p>
+          <span>({university?.ClubAmount})</span>
+        </Link>
+      ))}
+
+      <div className={styles.paginate}>
+        <button className={styles.paginateButton} disabled={page === 1} onClick={() => setPage((p) => p - 1)}>
+          Onceki
+        </button>
+        <div>{page}</div>
+        <button className={styles.paginateButton} disabled={!hasMore} onClick={() => setPage((p) => p + 1)}>
+          Sonraki
+        </button>
+      </div>
+    </div>
+  );
+};

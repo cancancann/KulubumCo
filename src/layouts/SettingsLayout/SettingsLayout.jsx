@@ -5,12 +5,16 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import avatar from '../../asset/ulas.png';
 import { IconButton } from '@mui/material';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import paths from '../../Router/paths';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import Menu from '../../components/Menu/Menu';
-import Dropdown from '../../components/Dropdown/Dropdown';
+// import Dropdown from '../../components/Dropdown/Dropdown';
+import { useAuth } from '../../context/authContext';
+import { SvgCamera } from '../../asset/icons';
+import api from '../../api';
+import { useSnackbar } from 'notistack';
 
 const sidebarLinks = [
   {
@@ -18,7 +22,7 @@ const sidebarLinks = [
     path: paths.settings.default,
   },
   {
-    text: 'Clubs',
+    text: 'Klüplerim',
     path: paths.settings.clubs,
   },
   {
@@ -37,8 +41,25 @@ const sidebarLinks = [
 
 const SettingsLayout = () => {
   const [active, setActive] = useState(false);
+  const { user, invalidateCookie } = useAuth();
+  const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
 
   const activeTab = sidebarLinks.find((link) => link.path === window.location.pathname) || sidebarLinks[0];
+
+  const handleProfileImageChange = (e) => {
+    const file = e?.target?.files?.[0];
+    if (!file) return;
+    if (file.type.split('/')[0] !== 'image') return enqueueSnackbar('Geçersiz dosya tipi', { variant: 'error' });
+    const payload = new FormData();
+    payload.append('media', e.target.files[0]);
+    api.user
+      .edit(payload)
+      .then(() => {
+        enqueueSnackbar('Profil resmi başarıyla güncellendi!', { variant: 'success' });
+      })
+      .catch((e) => enqueueSnackbar(e.response?.data?.message || 'Beklenmedik bir hata oluştu!', { variant: 'error' }));
+  };
 
   return (
     <div className={styles.layoutWrapper}>
@@ -69,7 +90,27 @@ const SettingsLayout = () => {
                 }
               >
                 {/* Menü tasarımı burada olacak */}
-                <Dropdown avatar={avatar} setActive={setActive} />
+                <ul className={styles.navbarMenuList}>
+                  <li className={styles.navbarMenuListItem}>
+                    <Link to={paths.home.default}>Anasayfa</Link>
+                  </li>
+
+                  <li className={styles.navbarMenuListItem}>
+                    <button
+                      to={paths.home.default}
+                      onClick={() =>
+                        api.auth.logout().then(() => {
+                          navigate(paths.home.default);
+                          setTimeout(() => {
+                            invalidateCookie();
+                          }, 100);
+                        })
+                      }
+                    >
+                      Çıkış Yap
+                    </button>
+                  </li>
+                </ul>
               </Menu>
             </div>
           </div>
@@ -81,10 +122,14 @@ const SettingsLayout = () => {
         <div className={styles.containerContent}>
           <div className={styles.containerContentBackground}></div>
           <div className={styles.containerContentProfile}>
-            <img src={avatar} alt="user" />
+            <div className={styles.containerContentProfileEdit}>
+              <img src={avatar} alt="user" />
+              <input type="file" onChange={handleProfileImageChange} />
+              <SvgCamera />
+            </div>
             <div>
-              <h2>ulaş öztürk</h2>
-              <p>Your account is ready, you can now apply for advice.</p>
+              <h2>@{user.Username}</h2>
+              <p>Hesap, klüp işlemlerinizi buradan yürütebilirsiniz</p>
             </div>
           </div>
         </div>

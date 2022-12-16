@@ -2,6 +2,7 @@
 
 .main {
   width: 100%;
+  margin-bottom: 1rem;
 
   &Container {
     width: 100%;
@@ -10,16 +11,14 @@
     gap: 1.5rem;
     justify-content: space-between;
     // justify-content: center;
-    margin-bottom: 1.5rem;
   }
-  
+
   &Title {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  
   &Not {
     display: flex;
     justify-content: center;

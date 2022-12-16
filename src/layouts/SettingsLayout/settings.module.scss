@@ -57,7 +57,7 @@ $nav-height: 70px;
           background-image: url('../../asset/frame.png');
           width: 100%;
           border: 2px solid rgba(232, 234, 238, 0.4);
-          height: 152px;
+          height: 100px;
         }
 
         &Profile {
@@ -67,11 +67,11 @@ $nav-height: 70px;
           padding-inline: $container-padding;
           color: #083a50;
           margin-top: -50px;
+          gap: 40px;
 
           img {
             width: 180px;
             aspect-ratio: 1;
-            margin-right: 40px;
           }
 
           h2 {
@@ -80,6 +80,33 @@ $nav-height: 70px;
           }
           p {
             font-size: 1.25rem;
+          }
+        }
+        &ProfileEdit {
+          position: relative;
+          max-width: max-content;
+          input,
+          svg {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            width: 35px;
+            height: 35px;
+          }
+          svg {
+            color: $color-light;
+            background-color: $color-light-secondary;
+            border-radius: 50%;
+            z-index: 1;
+            padding: 0.3rem;
+          }
+
+          input {
+            cursor: pointer;
+            z-index: 2;
+            &::-webkit-file-upload-button {
+              visibility: hidden;
+            }
           }
         }
       }
@@ -120,6 +147,16 @@ $nav-height: 70px;
           margin-left: 3rem;
         }
       }
+    }
+  }
+}
+.navbarMenu {
+  &List {
+    padding: 0.25rem;
+    background-color: $color-light;
+    &Item {
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid $color-light-secondary;
     }
   }
 }

@@ -1,18 +1,26 @@
 @import '../../styles/variables.scss';
 
-
 .duyuru {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1.5rem;
-    background-color: $color-primary;
-    border-radius: $border-radius-l;
-    color: $color-light;
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-    h1 {
-        font-weight: bold;
-        font-size: 1.5rem;
-    }
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 1rem 1.5rem;
+  background-color: $color-primary;
+  border-radius: $border-radius-l;
+  color: $color-light;
+  gap: 1rem;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  h1 {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  &Searchbar {
+    padding: 0.5rem 1rem;
+    outline: none;
+    color: $color-dark;
+    border-radius: 0.5rem;
+    width: min(300px, 100%);
+  }
 }

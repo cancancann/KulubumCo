@@ -4,11 +4,13 @@ import avatar from '../../asset/avatar.png';
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton } from '../Button';
 import paths from '../../Router/paths';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Menu from '../Menu/Menu';
 import Button from '../Button';
 import Dropdown from '../Dropdown/Dropdown';
 import { useState } from 'react';
+import { useAuth } from '../../context/authContext';
+import { SvgVerticalEllipsis, SvgX } from '../../asset/icons';
 
 const navItems = [
   {
@@ -26,27 +28,15 @@ const navItems = [
 
   {
     title: 'Hakkımızda',
-    path: paths.home.default,
-  },
-];
-
-const menuItems = [
-  {
-    title: 'Profilim',
-    path: paths.settings.default,
-  },
-  {
-    title: 'Takip ettigim klüpler',
-    path: paths.settings.follows,
-  },
-  {
-    title: 'Üye olduğum klüpler',
-    path: paths.settings.clubs,
+    path: paths.home.detailClub,
   },
 ];
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
+  const { isAuth } = useAuth();
+  const location = useLocation();
+  const [hamburger, setHamburger] = useState(false);
 
   return (
     <nav className={styles.navbar}>
@@ -63,8 +53,13 @@ const Navbar = () => {
           {/* Navbar items */}
           <div className={styles.navbarItems}>
             {navItems.map((item) => (
-              <Link to={item.path} key={item}>
-                <Button variant="contained">{item.title}</Button>
+              <Link to={item.path} key={item.path}>
+                <Button
+                  variant="contained"
+                  className={item.path === location.pathname ? styles.navbarItemActive : styles.navbarItem}
+                >
+                  {item.title}
+                </Button>
               </Link>
             ))}
             {/* Search */}
@@ -75,18 +70,42 @@ const Navbar = () => {
             </div>
           </div>
           {/* Avatar */}
-          <Menu
-            toggle={
-              <IconButton>
-                <div className={styles.navbarAvatar} onClick={() => setActive(!active)}>
-                  <img src={avatar} alt="User" />
-                </div>
-              </IconButton>
-            }
-            active={active}
-          >
-            <Dropdown avatar={avatar} setActive={setActive} />
-          </Menu>
+          {isAuth ? (
+            <Menu
+              toggle={
+                <IconButton>
+                  <div className={styles.navbarAvatar} onClick={() => setActive(!active)}>
+                    <img src={avatar} alt="User" />
+                  </div>
+                </IconButton>
+              }
+              active={active}
+            >
+              <Dropdown avatar={avatar} setActive={setActive} />
+            </Menu>
+          ) : (
+            <Button>
+              <Link to={paths.login}>Giriş Yap</Link>{' '}
+            </Button>
+          )}
+          <div className={styles.navbarHamburger}>
+            <button onClick={() => setHamburger((h) => !h)}>{hamburger ? <SvgX /> : <SvgVerticalEllipsis />}</button>
+
+            {hamburger && (
+              <div className={styles.navbarHamburgerMenu}>
+                {navItems.map((item) => (
+                  <Link
+                    to={item.path}
+                    key={item.path}
+                    className={styles.navbarHamburgerMenuItem}
+                    onClick={() => setHamburger(false)}
+                  >
+                    {item.title}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </nav>

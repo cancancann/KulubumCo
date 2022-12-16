@@ -10,6 +10,7 @@ import { Formik } from 'formik';
 import api from '../../api';
 import { loginSchema } from '../../schemas/auth';
 import paths from '../../Router/paths';
+import { useAuth } from '../../context/authContext';
 
 const inputs = [
   {
@@ -26,9 +27,11 @@ const inputs = [
   },
 ];
 
-const Login = ({ ...props }) => {
+const Login = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
+  const { invalidateCookie } = useAuth();
+
   const initialFormValues = {
     Username: '',
     Userpassword: '',
@@ -38,8 +41,11 @@ const Login = ({ ...props }) => {
       .login(values)
       .then((res) => {
         if (res?.data?.success) {
+          invalidateCookie();
           enqueueSnackbar(res?.data?.message, { variant: 'success' });
-          navigate(paths.home.default);
+          setTimeout(() => {
+            navigate(paths.home.default);
+          }, 1000);
         }
       })
       .catch((err) => {

@@ -1,14 +1,14 @@
 const paths = {
   home: {
-    default: '/home',
-    clubs: '/home/club',
-    universities:'universities',
-    detailClub:'detailclub',
+    default: '/',
+    clubs: '/clubs',
+    universities: '/universities',
+    detailClub: '/detailclub',
   },
   login: '/login',
   register: '/register',
   forgotPassword: '/forgotPassword',
-  resetPassword:'/resetPassword',
+  resetPassword: '/resetPassword',
   settings: {
     default: '/settings',
     password: `/settings/password`,

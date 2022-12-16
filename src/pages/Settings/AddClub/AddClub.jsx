@@ -4,19 +4,14 @@ import { addClubSchema } from '../../../schemas/club';
 import {
   SettingsInput,
   SettingsResponse,
+  SettingsSelect,
   SettingsSubmitButton,
   SettingsTextarea,
   SettingsTitle,
 } from '../components/settingsForm/SettingsForm';
 import styles from './addClub.module.scss';
 import api from '../../../api';
-
-const InitialValues = {
-  ClubName: '',
-  ClubMail: '',
-  UniversityId: '',
-  Description: '',
-};
+import { useFormUniversities } from '../../../context/dataContext';
 
 const responseInitial = {
   success: false,
@@ -26,6 +21,14 @@ const responseInitial = {
 const AddClub = () => {
   const [response, setResponse] = useState(responseInitial);
   const [loading, setLoading] = useState(false);
+  const universities = useFormUniversities();
+
+  const InitialValues = {
+    ClubName: '',
+    ClubMail: '',
+    UniversityId: universities[0].value,
+    Description: '',
+  };
 
   const handleSubmit = (values, actions) => {
     setLoading(true);
@@ -59,14 +62,13 @@ const AddClub = () => {
             <div className={styles.formContainer}>
               {/* LEFT */}
               <div className={styles.formLeft}>
-                <SettingsInput
-                  value={formik.values.UniversityId}
+                <SettingsSelect
                   name="UniversityId"
-                  label="Üniversite İsmi"
-                  type="text"
-                  placeholder="Çukurova Üniversitesi"
+                  label="Universite"
+                  options={universities}
+                  defaultValue={formik.values.UniversityId}
                   error={formik.errors.UniversityId}
-                  onChange={formik.handleChange}
+                  onChange={(e) => formik.setFieldValue('UniversityId', e.target.value)}
                 />
                 <SettingsInput
                   value={formik.values.ClubName}

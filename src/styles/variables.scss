@@ -2,6 +2,9 @@ $color-primary: #02a28f;
 $color-lighter: #fff;
 $color-light: #f5f5f5;
 $color-light-secondary: #616161;
+$color-dark: #181818;
+$color-success: #198754;
+$color-danger: #dc3545;
 
 $container-size: 1200px;
 $screen-xsm: 360px;
@@ -21,6 +24,6 @@ $duration-normal: 500ms;
 $duration-slow: 1000ms;
 
 .container {
-    width: min(calc(100% - 4rem),$container-size);
-    margin-inline:auto;
+  width: min(calc(100% - 2rem), $container-size);
+  margin-inline: auto;
 }

@@ -1,44 +1,47 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Card from '../../../components/Card/Card';
-import DuyuruNav from '../../../components/DuyuruNav/DuyuruNav';
-import seftali from '../../../asset/seftali.png';
+import { DuyuruSearchNav } from '../../../components/DuyuruNav/DuyuruNav';
+import education from '../../../asset/education.jpg';
 import styles from './universities.module.scss';
-import { useState } from 'react';
-import api from './../../../api/index';
-import Spinner from './../../../components/Spinner';
+import { useDataContext } from '../../../context/dataContext';
+import { getCityByCode } from '../../../helpers/city';
+import useSearch from './../../../hooks/useSearch';
 
 const Universities = () => {
+  const { universities } = useDataContext();
 
-  const [universities, setUniversities] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    api.universities
-      .list()
-      .then((res) => setUniversities(res.data.data))
-      .finally(() => setLoading(false));
-  }, []);
+  const { query, setQuery, result } = useSearch(universities, filterFunction);
 
   return (
     <main className={styles.universities}>
-      <DuyuruNav text="Üniversiteler" />
+      <DuyuruSearchNav
+        title="Üniversiteler"
+        searchQ={query}
+        placeholder="İsme veya şehre göre ara"
+        onChange={setQuery}
+      />
       <div className={styles.universitiesContent}>
-        {loading ? (
-          <Spinner position="center" />
-        ) : (
-          universities.map((university) => (
-            <Card>
-              <Card.Img photo={seftali} />
-              <Card.Body>
-                <Card.Label>{university.UniversityId}</Card.Label>
-                <Card.Title>{university.UniversityName}</Card.Title>
-              </Card.Body>
-            </Card>
-          ))
-        )}
+        {result.map((university) => (
+          <Card>
+            <Card.Img photo={education} />
+            <Card.Body>
+              <Card.Label>{getCityByCode(university.SehirId)?.name}</Card.Label>
+              <Card.Title>{university.UniversityName}</Card.Title>
+            </Card.Body>
+          </Card>
+        ))}
       </div>
     </main>
   );
 };
 
 export default Universities;
+
+const filterFunction = (university, query) => {
+  const q = query.toLowerCase();
+  //İsme göre veya şehre göre ara
+  return (
+    university?.UniversityName?.toLowerCase().includes(q) ||
+    getCityByCode(university?.SehirId)?.name.toLowerCase().includes(q)
+  );
+};

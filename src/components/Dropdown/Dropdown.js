@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
 import paths from '../../Router/paths';
 import styles from './dropdown.module.scss';
 import { Link } from 'react-router-dom';
 import Button from '../Button';
+import api from '../../api';
+import { useAuth } from '../../context/authContext';
 
 const menuItems = [
   {
@@ -20,6 +21,15 @@ const menuItems = [
 ];
 
 const Dropdown = ({ avatar, setActive }) => {
+  const { invalidateCookie } = useAuth();
+
+  const handleLogout = () => {
+    api.auth.logout().finally(() => {
+      invalidateCookie();
+      setActive(false);
+    });
+  };
+
   return (
     <div className={styles.menu}>
       {/* Image section */}
@@ -36,7 +46,7 @@ const Dropdown = ({ avatar, setActive }) => {
           </Link>
         ))}
 
-        <Button variant="contained" className="w-full" onClick={() => setActive(false)}>
+        <Button variant="contained" className="w-full" onClick={handleLogout}>
           Çıkış Yap
         </Button>
       </div>

@@ -4,8 +4,11 @@ const Footer = () => {
       style={{
         background: '#02A28F',
         position: 'absolute',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         width: '-webkit-fill-available',
-        height: '48px',
+        height: '50px',
         left: '-1px' /*margin bootom ayarlanacak*/,
       }}
     >

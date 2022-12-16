@@ -22,7 +22,7 @@ const Follows = () => {
                 <b>By </b>
                 Okçuluk Kulubü
               </Card.Owner>
-              <div style={{ display:'flex',justifyContent:'flex-end'}}>
+              <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <SettingsSubmitButton>Takip ediliyor</SettingsSubmitButton>
               </div>
             </Card.Body>
@@ -37,12 +37,12 @@ const Follows = () => {
                 <b>By </b>
                 Okçuluk Kulubü
               </Card.Owner>
-              <div style={{ display:'flex',justifyContent:'flex-end'}}>
+              <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <SettingsSubmitButton>Takip ediliyor</SettingsSubmitButton>
               </div>
             </Card.Body>
           </Card>
-          
+
           <Card className={styles.mainCard}>
             <Card.Img photo={cardImage} />
             <Card.Body>
@@ -52,14 +52,12 @@ const Follows = () => {
                 <b>By </b>
                 Okçuluk Kulubü
               </Card.Owner>
-              <div style={{ display:'flex',justifyContent:'flex-end'}}>
+              <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <SettingsSubmitButton>Takip ediliyor</SettingsSubmitButton>
               </div>
             </Card.Body>
           </Card>
         </div>
-        {/* button */}
-        <SettingsSubmitButton>Save</SettingsSubmitButton>
       </div>
     </main>
   );

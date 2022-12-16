@@ -20,8 +20,17 @@ $sidebar-width: 500px;
   &Sidebar {
     width: $sidebar-width !important;
     padding-left: 2rem;
-    &Content {
+    &Item {
+      display: flex;
+      justify-content: space-between;
+      p {
+        white-space: nowrap;
+        max-width: 32ch;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
+
     &Title {
       background-color: $color-primary;
       padding: 0.75rem;
@@ -48,6 +57,28 @@ $sidebar-width: 500px;
     font-size: 1.25rem;
     font-weight: 500;
     color: $color-light;
+  }
+}
+
+.paginate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+  * {
+    padding: 0.5rem 1rem;
+  }
+  div {
+    min-width: 6ch;
+    text-align: center;
+  }
+  &Button {
+    background-color: $color-primary;
+    color: $color-light;
+    border-radius: $border-radius-sm;
+    &:disabled {
+      opacity: 0.5;
+    }
   }
 }
 @media (max-width: $screen-l) {

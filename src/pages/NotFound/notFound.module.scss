@@ -1,0 +1,31 @@
+@import '../../styles/variables.scss';
+.notFound {
+  max-height: 100vh;
+  min-height: 100vh;
+  &Body {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: calc(100vh - 50px);
+    padding-top: 50px;
+    img {
+      margin-inline: auto;
+      max-height: 400px;
+    }
+    a,
+    h1 {
+      color: $color-primary;
+    }
+    h1 {
+      font-weight: bold;
+      font-size: 2rem;
+      color: #47b886;
+    }
+    a {
+      font-weight: 600;
+      color: #295040;
+    }
+  }
+}
