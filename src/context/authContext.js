@@ -10,6 +10,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const cookieToken = new Cookies().get(KLUBUMCO_TOKEN);
   const [token, setToken] = useState(cookieToken);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     try {
@@ -18,6 +19,7 @@ const AuthProvider = ({ children }) => {
     } catch (error) {
       setUser({});
     }
+    setLoading(false);
   }, [token]);
 
   const isAuth = !!Object.keys(user).length;
@@ -27,7 +29,7 @@ const AuthProvider = ({ children }) => {
     setToken(newToken);
   };
 
-  const values = { user, setUser, invalidateCookie, isAuth };
+  const values = { user, setUser, invalidateCookie, isAuth, loading };
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };

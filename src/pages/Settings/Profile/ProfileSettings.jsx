@@ -33,7 +33,7 @@ const ProfileSettings = () => {
   });
   const universities = useFormUniversities();
 
-  if (!formik.values.UniversityId) return;
+  if (!formik.values.Username) return;
   return (
     <main className={styles.profile}>
       {/* Title */}

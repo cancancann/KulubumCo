@@ -3,9 +3,9 @@ import { useAuth } from '../../context/authContext';
 import paths from '../../Router/paths';
 
 const PrivateRoute = ({ children }) => {
-  const { isAuth } = useAuth();
+  const { isAuth, loading } = useAuth();
 
-  if (!isAuth) {
+  if (!isAuth && !loading) {
     return <Navigate to={paths.login} />;
   }
 
