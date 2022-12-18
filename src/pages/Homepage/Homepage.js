@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Card from '../../components/Card/Card';
 import styles from './home.module.scss';
 import introBackground from '../../asset/image.png';
-import cardImage from '../../asset/image_3.jpg'
+import cardImage from '../../asset/image_3.jpg';
 import Button from './../../components/Button/';
 import Modal from '../../components/Modal/Modal';
 import { useState } from 'react';
@@ -62,7 +62,7 @@ const HomePage = () => {
             </Card.Caption>
             <Card.Date>22 Agustus 2022</Card.Date>
           </Card.Body>
-        </Card> 
+        </Card>
       </Modal>
       {/* Intro */}
       <section className={styles.homeIntro} style={introStyle}>

@@ -51,7 +51,11 @@ const Categories = () => {
   return (
     <div className={styles.layoutSidebarContent}>
       {universities.map((university) => (
-        <Link key={university?.UniversityId} className={styles.layoutSidebarItem} to={paths.login}>
+        <Link
+          key={university?.UniversityId}
+          className={styles.layoutSidebarItem}
+          to={`${paths.home.clubsByUniversity}/${university.UniversityId}`}
+        >
           <p>{university.UniversityName}</p>
           <span>({university?.ClubAmount})</span>
         </Link>

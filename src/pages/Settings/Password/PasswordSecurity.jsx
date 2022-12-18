@@ -4,9 +4,11 @@ import { SettingsInput, SettingsSubmitButton, SettingsTitle } from '../component
 import { changePasswordSchema } from '../../../schemas/auth';
 import api from '../../../api';
 import { useSnackbar } from 'notistack';
+import { useAuth } from '../../../context/authContext';
 
 const PasswordSecurity = () => {
   const { enqueueSnackbar } = useSnackbar();
+  const { invalidateCookie } = useAuth();
 
   const formik = useFormik({
     validateOnChange: true,
@@ -17,6 +19,7 @@ const PasswordSecurity = () => {
         .changePassword(values)
         .then(() => {
           enqueueSnackbar('Şifre değiştirme işlemi başarılı!', { variant: 'success' });
+          invalidateCookie();
           resetForm();
         })
         .catch((e) => enqueueSnackbar(e.response.data?.message || 'Beklenmedik bir hata oluştu!', { variant: 'error' }))

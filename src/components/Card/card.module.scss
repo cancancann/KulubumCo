@@ -34,6 +34,29 @@
     font-weight: 500;
     color: $color-light-secondary;
   }
+  &Follow {
+    background-color: $color-primary;
+    padding: 0.25rem 1rem;
+    color: $color-light;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    align-self: flex-end;
+    user-select: none;
+    min-width: 120px;
+    min-height: 2rem;
+    &[variant='none'] {
+      background-color: $color-danger !important;
+    }
+    transition: 300ms;
+
+    &:active,
+    &:disabled {
+      opacity: 0.7 !important;
+    }
+    &:hover {
+      opacity: 0.9;
+    }
+  }
 }
 
 @media (max-width: $screen-md) {

@@ -13,13 +13,17 @@ const api = {
   },
   clubs: {
     create: (values) => API.post('/club', values),
-    getClub: ({ page, limit, name }) => API.get(`/club`, { params: { page, limit, name } }),
+    getClub: ({ page, limit, name }) => API.get('/club', { params: { page, limit, name } }),
     deleteClub: (id) => API.delete(`/club/${id}`),
     search: (query) => API.get(`/club/search/getByNameContains`, { params: { name: query } }),
+    getClubsByUniversity: ({ universityId, page, limit }) =>
+      API.get(`/club/search/getByUniversityId`, { params: { universityId, page, limit } }),
+    follow: (ClubId) => API.post('/follow', { ClubId }),
   },
   user: {
     changePassword: (data) => API.post('/user/password/change', data),
     edit: (data) => API.put('/user', data),
+    changeProfileImage: (data) => API.patch('/user/profileimage/update', data),
   },
 
   universities: {

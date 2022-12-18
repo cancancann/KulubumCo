@@ -21,7 +21,7 @@ const menuItems = [
 ];
 
 const Dropdown = ({ avatar, setActive }) => {
-  const { invalidateCookie } = useAuth();
+  const { invalidateCookie, user } = useAuth();
 
   const handleLogout = () => {
     api.auth.logout().finally(() => {
@@ -37,7 +37,7 @@ const Dropdown = ({ avatar, setActive }) => {
         <img src={avatar} alt="user" />
       </div>
       {/* Name */}
-      <div className={styles.menuTitle}>Hikmet Can Öyke</div>
+      <div className={styles.menuTitle}>{user?.Username}</div>
       {/* Buttons */}
       <div className={styles.menuLinks}>
         {menuItems.map((item) => (

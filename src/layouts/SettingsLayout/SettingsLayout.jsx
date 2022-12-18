@@ -54,7 +54,7 @@ const SettingsLayout = () => {
     const payload = new FormData();
     payload.append('media', e.target.files[0]);
     api.user
-      .edit(payload)
+      .changeProfileImage(payload)
       .then(() => {
         enqueueSnackbar('Profil resmi başarıyla güncellendi!', { variant: 'success' });
       })

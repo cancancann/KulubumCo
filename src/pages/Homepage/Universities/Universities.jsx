@@ -6,6 +6,8 @@ import styles from './universities.module.scss';
 import { useDataContext } from '../../../context/dataContext';
 import { getCityByCode } from '../../../helpers/city';
 import useSearch from './../../../hooks/useSearch';
+import { Link } from 'react-router-dom';
+import paths from './../../../Router/paths';
 
 const Universities = () => {
   const { universities } = useDataContext();
@@ -22,11 +24,17 @@ const Universities = () => {
       />
       <div className={styles.universitiesContent}>
         {result.map((university) => (
-          <Card>
+          <Card key={university.UniversityId}>
             <Card.Img photo={education} />
             <Card.Body>
-              <Card.Label>{getCityByCode(university.SehirId)?.name}</Card.Label>
-              <Card.Title>{university.UniversityName}</Card.Title>
+              <Card.Title>
+                <Link
+                  to={`${paths.home.clubsByUniversity}/${university.UniversityId}`}
+                  className={styles.universitiesContentItem}
+                >
+                  {university.UniversityName}
+                </Link>
+              </Card.Title>
             </Card.Body>
           </Card>
         ))}

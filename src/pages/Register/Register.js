@@ -14,6 +14,7 @@ import { registerSchema } from '../../schemas/auth';
 import api from '../../api';
 import paths from '../../Router/paths';
 import { useFormUniversities } from '../../context/dataContext';
+import { useAuth } from '../../context/authContext';
 
 // İnline style Login klasorunun altında css file eklenecek
 
@@ -25,10 +26,11 @@ const initialFormValues = {
   Universite: '',
 };
 
-const Register = ({ ...props }) => {
+const Register = () => {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const universityOptions = useFormUniversities();
+  const { invalidateCookie } = useAuth();
 
   const onSaveClick = (values) => {
     const body = {
@@ -43,6 +45,7 @@ const Register = ({ ...props }) => {
         if (res?.data?.success) {
           enqueueSnackbar(res?.data?.message, { variant: 'success' });
           navigate(paths.home.default);
+          invalidateCookie();
         }
       })
       .catch((err) => {

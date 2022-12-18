@@ -33,6 +33,10 @@ const routes = [
         element: <ClubsPage />,
       },
       {
+        path: `${paths.home.clubsByUniversity}/:universityId`,
+        element: <ClubsPage />,
+      },
+      {
         path: paths.home.universities,
         element: <Universities />,
       },

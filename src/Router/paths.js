@@ -4,6 +4,7 @@ const paths = {
     clubs: '/clubs',
     universities: '/universities',
     detailClub: '/detailclub',
+    clubsByUniversity: '/clubs/by',
   },
   login: '/login',
   register: '/register',

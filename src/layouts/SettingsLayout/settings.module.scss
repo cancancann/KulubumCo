@@ -16,6 +16,7 @@ $nav-height: 70px;
 
       &Wrapper {
         position: fixed;
+        z-index: 99;
         background-color: #fff;
         width: 100%;
         border-bottom: 2px solid rgba(232, 234, 238, 0.315);

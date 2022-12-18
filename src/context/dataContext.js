@@ -17,7 +17,6 @@ const DataProvider = ({ children }) => {
           setData((d) => ({ ...d, universities: res.data.data }));
         }
       })
-      .catch(() => window.location.reload())
       .finally(() => setLoading(false));
     setData((d) => ({ ...d, cities }));
   }, []);

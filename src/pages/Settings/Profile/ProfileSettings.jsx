@@ -12,11 +12,10 @@ import { useFormUniversities } from '../../../context/dataContext';
 import api from '../../../api';
 
 const ProfileSettings = () => {
-  const { user } = useAuth();
+  const { user, invalidateCookie } = useAuth();
 
   const formik = useFormik({
     enableReinitialize: true,
-
     initialValues: {
       Username: user?.Username,
       Email: user?.Email,
@@ -27,7 +26,9 @@ const ProfileSettings = () => {
     onSubmit: (values, { setSubmitting }) => {
       api.user
         .edit(values)
-        .then((res) => console.log(res.data))
+        .then((res) => {
+          invalidateCookie();
+        })
         .finally(() => setSubmitting(false));
     },
   });

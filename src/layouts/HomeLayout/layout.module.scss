@@ -5,7 +5,7 @@ $sidebar-width: 500px;
   justify-content: space-between;
   background-color: $color-light;
   padding-top: 7rem;
-
+  padding-bottom: 1rem;
   &Container {
     display: flex;
     @extend .container;
