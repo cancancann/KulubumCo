@@ -5,11 +5,12 @@ const SettingsTitle = ({ text }) => {
   return <h1 className={styles.settingsTitle}>{text}</h1>;
 };
 
-const SettingsInput = ({ name, className, label, type = 'text', placeholder, value, onChange, error }) => {
+const SettingsInput = ({ name, className, label, type = 'text', placeholder, value, onChange, error, ref }) => {
   return (
     <div className={cn(styles.formInput, className)}>
       <label>{label}</label>
       <input
+        ref={ref}
         name={name}
         type={type}
         variant={error && 'error'}
@@ -56,11 +57,11 @@ const SettingsPhoneSelect = ({ label, placeholder, options = [] }) => {
   );
 };
 
-const SettingsTextarea = ({ placeholder, value, name, onChange, label, error }) => {
+const SettingsTextarea = ({ ref, placeholder, value, name, onChange, label, error }) => {
   return (
     <div className={styles.formTextarea}>
       <label>{label}</label>
-      <textarea placeholder={placeholder} variant={error && 'error'} name={name} onChange={onChange} value={value} />
+      <textarea ref={ref} placeholder={placeholder} variant={error && 'error'} name={name} onChange={onChange} value={value} />
       <span className={styles.error}>{error}</span>
     </div>
   );

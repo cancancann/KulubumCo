@@ -14,6 +14,7 @@ import api from '../../../api';
 const ProfileSettings = () => {
   const { user, invalidateCookie } = useAuth();
 
+
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -21,7 +22,7 @@ const ProfileSettings = () => {
       Email: user?.Email,
       Department: user?.Department,
       UniversityId: user?.UniversityId,
-      BirthDate: user?.BirthDate,
+      BirthDate: user?.Birthdate,
     },
     onSubmit: (values, { setSubmitting }) => {
       api.user
@@ -89,7 +90,7 @@ const ProfileSettings = () => {
               onChange={formik.handleChange}
             />
             {/* <SettingsPhoneSelect label="Phone number" options={phones} placeholder="Enter your number" /> */}
-            <SettingsSelect label="Department" options={universities} />
+            <SettingsSelect label="Department" value={293} options={universities} />
           </div>
         </div>
         {/* Button */}

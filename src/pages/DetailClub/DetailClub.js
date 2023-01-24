@@ -14,8 +14,8 @@ const DetailClub = () => {
         background: `url(${photo})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
-      };
-    
+    };
+
     return (
         <main>
             <section className={styles.detailIntro} style={introStyle}>
@@ -37,7 +37,7 @@ const DetailClub = () => {
                         <Card.Img photo={horsePhoto} />
                         <Card.Body>
                             <Card.Label>In Label</Card.Label>
-                            <Card.Title>Cukurova Universitesi</Card.Title>
+                            <Card.Title>Marmara Universitesi</Card.Title>
                             <Card.Owner>
                                 <b>By </b>
                                 Okçuluk Kulubü
@@ -53,7 +53,7 @@ const DetailClub = () => {
                         <Card.Img photo={horsePhoto} />
                         <Card.Body>
                             <Card.Label>In Label</Card.Label>
-                            <Card.Title>Cukurova Universitesi</Card.Title>
+                            <Card.Title>Marmara Universitesi</Card.Title>
                             <Card.Owner>
                                 <b>By </b>
                                 Okçuluk Kulubü
@@ -69,7 +69,7 @@ const DetailClub = () => {
                         <Card.Img photo={horsePhoto} />
                         <Card.Body>
                             <Card.Label>In Label</Card.Label>
-                            <Card.Title>Cukurova Universitesi</Card.Title>
+                            <Card.Title>Marmara Universitesi</Card.Title>
                             <Card.Owner>
                                 <b>By </b>
                                 Okçuluk Kulubü
@@ -85,7 +85,7 @@ const DetailClub = () => {
                         <Card.Img photo={horsePhoto} />
                         <Card.Body>
                             <Card.Label>In Label</Card.Label>
-                            <Card.Title>Cukurova Universitesi</Card.Title>
+                            <Card.Title>Marmara Universitesi</Card.Title>
                             <Card.Owner>
                                 <b>By </b>
                                 Okçuluk Kulubü

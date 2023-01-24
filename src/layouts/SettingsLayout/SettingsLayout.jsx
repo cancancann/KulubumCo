@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './settings.module.scss';
 // import { Outlet } from 'react-router-dom';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import avatar from '../../asset/ulas.png';
+import avatar from '../../asset/avatar2.png';
 import { IconButton } from '@mui/material';
 import { Outlet, useNavigate } from 'react-router-dom';
 import paths from '../../Router/paths';
@@ -15,6 +15,7 @@ import { useAuth } from '../../context/authContext';
 import { SvgCamera } from '../../asset/icons';
 import api from '../../api';
 import { useSnackbar } from 'notistack';
+import axios from 'axios';
 
 const sidebarLinks = [
   {
@@ -44,8 +45,24 @@ const SettingsLayout = () => {
   const { user, invalidateCookie } = useAuth();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
+  const [profilImg, setProfilImg] = useState(null)
+  const BaseUrl = "http://localhost:4000/api/uploads/profileImg/"
 
   const activeTab = sidebarLinks.find((link) => link.path === window.location.pathname) || sidebarLinks[0];
+  useEffect(() => {
+    if (user) {
+      api.user.getProfileImage().then(res => {
+        if (res.data.success && res.data && res.data.data !== "default.png") {
+          let baseUrl = BaseUrl + res.data.data
+          setProfilImg(baseUrl)
+        } else {
+          setProfilImg(avatar)
+        }
+      }).catch(err => {
+        setProfilImg(avatar)
+      })
+    }
+  }, [user])
 
   const handleProfileImageChange = (e) => {
     const file = e?.target?.files?.[0];
@@ -55,8 +72,13 @@ const SettingsLayout = () => {
     payload.append('media', e.target.files[0]);
     api.user
       .changeProfileImage(payload)
-      .then(() => {
-        enqueueSnackbar('Profil resmi başarıyla güncellendi!', { variant: 'success' });
+      .then((res) => {
+        if (res.data.success && res.data.data && res.data.data.ProfileImg) {
+          let baseUrl = BaseUrl + res.data.data.ProfileImg
+          setProfilImg(baseUrl)
+          enqueueSnackbar('Profil resmi başarıyla güncellendi!', { variant: 'success' });
+        }
+
       })
       .catch((e) => enqueueSnackbar(e.response?.data?.message || 'Beklenmedik bir hata oluştu!', { variant: 'error' }));
   };
@@ -77,7 +99,8 @@ const SettingsLayout = () => {
                 </IconButton>
               </div>
               <div>
-                <img src={avatar} alt="User" />
+                <img src={profilImg} alt="user" style={{ borderRadius: "50%" }} />
+
               </div>
               <Menu
                 active={active}
@@ -123,7 +146,8 @@ const SettingsLayout = () => {
           <div className={styles.containerContentBackground}></div>
           <div className={styles.containerContentProfile}>
             <div className={styles.containerContentProfileEdit}>
-              <img src={avatar} alt="user" />
+              <img src={profilImg} alt="user" style={{ borderRadius: "50%" }} />
+
               <input type="file" onChange={handleProfileImageChange} />
               <SvgCamera />
             </div>

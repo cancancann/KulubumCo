@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import Card from '../../components/Card/Card';
 import styles from './home.module.scss';
 import introBackground from '../../asset/image.png';
@@ -6,9 +5,21 @@ import cardImage from '../../asset/image_3.jpg';
 import Button from './../../components/Button/';
 import Modal from '../../components/Modal/Modal';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import api from '../../api';
+import { useAuth } from '../../context/authContext';
+import { useSnackbar } from 'notistack';
+import moment from 'moment/moment';
+import { SettingsSelect } from '../Settings/components/settingsForm/SettingsForm';
+import { useFormUniversities } from '../../context/dataContext';
+import { useCallback } from 'react';
 
 const HomePage = () => {
   const [open, setOpen] = useState(false);
+  const [posts, setPosts] = useState([])
+  const { user } = useAuth();
+  const { enqueueSnackbar } = useSnackbar();
+  const universities = useFormUniversities();
 
   const introStyle = {
     background: `url(${introBackground})`,
@@ -16,6 +27,30 @@ const HomePage = () => {
     backgroundSize: 'cover',
   };
 
+  useEffect(() => {
+    if (user && user.UserId) {
+      api.posts.getByUserId().then(({ data }) => {
+
+        if (data.success && data.data.length > 0) {
+          setPosts(data.data)
+        }
+      }).catch((error) => {
+        enqueueSnackbar(error, { variant: 'error', autoHideDuration: 2500 });
+
+      })
+    }
+  }, [user])
+  const selectedUniHandler = useCallback((value) => {
+    console.log(value)
+    if (value) {
+      api.posts.getByUniversityId(value).then(({ data }) => {
+        console.log(data)
+        if (data.success) {
+          setPosts(data.data)
+        }
+      })
+    }
+  }, [universities, user])
   return (
     <main className={styles.home}>
       <Modal open={open} setOpen={setOpen}>
@@ -23,7 +58,7 @@ const HomePage = () => {
           <Card.Img photo={cardImage} />
           <Card.Body>
             <Card.Label>In Label</Card.Label>
-            <Card.Title>Cukurova Universitesi</Card.Title>
+            <Card.Title>Marmara Universitesi</Card.Title>
             <Card.Owner>
               <b>By </b>
               Okçuluk Kulubü
@@ -64,48 +99,70 @@ const HomePage = () => {
           </Card.Body>
         </Card>
       </Modal>
+
       {/* Intro */}
       <section className={styles.homeIntro} style={introStyle}>
         <div className={styles.homeIntroContent}>
-          <p>Project manager</p>
-          <h1>Hikmet Can Öyke & Abdulkadir Develioğlu</h1>
+          <p>KulucumCo</p>
+          <h1>Test Version 1</h1>
           <h3>
             <b>By </b>
-            Çukurova Universitesi
+            Legacy
           </h3>
         </div>
       </section>
       {/* Feed */}
       <section className={styles.homeContent}>
         {/* Navbar */}
-        <div className={styles.homeContentNav}>
-          <h1>Duyurular</h1>
-          <Link>Daha fazlası için tıklayınız...</Link>
+        <div className={styles.homeContentNav} >
+          <h1 style={{ marginRight: "10rem" }}>Duyurular</h1>
+          {user && user.UserId && universities.length ? null :
+            <div style={{ color: "black" }}>
+              <SettingsSelect
+                name="UniversityId"
+                label="University"
+                options={universities}
+                onChange={(e) => { selectedUniHandler(e.target.value) }}
+              />
+            </div>
+          }
+
         </div>
-        {/* Content */}
-        <div className={styles.homeContentFeed}>
-          <Card>
-            <Card.Img photo={cardImage} />
-            <Card.Body>
-              <Card.Label>In Label</Card.Label>
-              <Card.Title>Cukurova Universitesi</Card.Title>
-              <Card.Owner>
-                <b>By </b>
-                Okçuluk Kulubü
-              </Card.Owner>
-              <Card.Caption>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy
-              </Card.Caption>
-              <div className="flex justify-between items-center">
-                <Card.Date>22 Agustus 2022</Card.Date>
-                <Button onClick={() => setOpen(true)}>Detayları gör</Button>
-              </div>
-            </Card.Body>
-          </Card>
+        <div div className={styles.homeContentFeed}>
+
+          {/* Content */}
+          {posts.length > 0 ? posts.map(post => {
+
+            var dateStringWithTime = moment.utc(post.CreatedAt).format('HH:mm:ss DD-MMM-YYYY ');
+            return (
+              <Card>
+                <Card.Img photo={cardImage} />
+                <Card.Body>
+                  <Card.Label>{post.UniversityName}</Card.Label>
+                  <Card.Title>{post.PostHeader}</Card.Title>
+                  <Card.Owner>
+                    <b>By </b>
+                    {post.ClubName}
+                  </Card.Owner>
+                  <Card.Caption>
+                    {post.PostText}
+                  </Card.Caption>
+                  <div className="flex justify-between items-center">
+                    <Card.Date>{dateStringWithTime}</Card.Date>
+                    <Button onClick={() => setOpen(true)}>Detayları gör</Button>
+                  </div>
+                </Card.Body>
+              </Card>
+            )
+          })
+
+            :
+            <h1>Post bulunmamaktadır</h1>
+          }
         </div>
+
       </section>
-    </main>
+    </main >
   );
 };
 

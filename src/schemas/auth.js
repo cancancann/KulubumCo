@@ -52,4 +52,14 @@ const changePasswordSchema = yup.object({
     .required('Şifre onay alanı boş bırakılamaz'),
 });
 
-export { registerSchema, loginSchema, changePasswordSchema };
+const postCreateSchema = yup.object({
+  postHeader: yup
+    .string()
+    .min(8, 'en az 10 karakter olmalıdır!')
+    .required('Post header boş  bırakılamaz'),
+  postDescription: yup
+    .string()
+    .min(8, 'en az 10 karakter olmalıdır!')
+    .required('Post text alanı boş  bırakılamaz'),
+})
+export { registerSchema, loginSchema, changePasswordSchema, postCreateSchema };

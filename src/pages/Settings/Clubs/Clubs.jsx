@@ -8,6 +8,8 @@ import UploadSvg from '../../../asset/Vector.svg';
 import Card from './../../../components/Card/Card';
 import api from './../../../api/index';
 import ConfirmModal from '../../../components/ConfirmModal/ConfirmModal';
+import { useRef } from 'react';
+import { useSnackbar } from 'notistack';
 
 const Clubs = () => {
   const [myClubs, setMyClubs] = useState([]);
@@ -15,10 +17,16 @@ const Clubs = () => {
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [activeClub, setActiveClub] = useState();
+  const [error, setError] = useState({ headerError: null, textError: null })
+  const headerRef = useRef(null);
+  const descriptionRef = useRef(null)
+
+
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
-    api.clubs
-      .getClub(1, 5)
+    api.admin
+      .getByUserId()
       .then((res) => setMyClubs(res.data.data))
       .catch((err) => console.log(err.response.data.message));
   }, []);
@@ -43,7 +51,39 @@ const Clubs = () => {
 
     // .finally(() => setIsDeleting(false));
   };
+  const shareToPost = () => {
+    let ErrorInfo = { headerError: null, textError: null }
+    if (headerRef.current === null || headerRef.current.length < 10) {
+      ErrorInfo.headerError = "En az 10 karakterli olmalı"
+    }
+    if (descriptionRef.current === null || descriptionRef.current.length < 10) {
+      ErrorInfo.textError = "En az 10 karakterli olmalı"
+    }
+    if (ErrorInfo.headerError === null && ErrorInfo.textError === null) {
+      let body = {
+        PostHeader: headerRef.current,
+        PostText: descriptionRef.current,
+        ClubId: activeClub.ClubId
+      }
+      api.posts.create(body)
+        .then((res) => {
+          if (res?.data?.success) {
+            enqueueSnackbar(res?.data?.message, { variant: 'success' });
+            setPostModal(false)
+          }
+        })
+        .catch((err) => {
+          enqueueSnackbar(err?.response?.data?.message, { variant: 'error' });
+        });
+    } else {
+      enqueueSnackbar("Tüm alanları eksiksiz doldurunuz", { variant: 'error', autoHideDuration: 2500 });
 
+    }
+    setError(ErrorInfo)
+  }
+  const fieldHandler = (field, value) => {
+    field === "header" ? headerRef.current = value : descriptionRef.current = value
+  }
   return (
     <main className={styles.main}>
       <Modal className={styles.modal} open={postModal} setOpen={setPostModal}>
@@ -58,13 +98,13 @@ const Clubs = () => {
             </p>
           </div>
           {/* İNPUT */}
-          <SettingsInput className={styles.titleInput} label="Duyuru Başlığı" placeholder="Kulüp Başlığını giriniz" />
+          <SettingsInput ref={headerRef} error={error.headerError} className={styles.titleInput} label="Duyuru Başlığı" placeholder="Kulüp Başlığını giriniz" onChange={(e) => { fieldHandler("header", e.target.value) }} />
           {/* DUYURU METNİ */}
           <div className={styles.modalTextarea}>
-            <SettingsTextarea />
+            <SettingsTextarea error={error.textError} ref={descriptionRef} onChange={(e) => { fieldHandler("description", e.target.value) }} />
           </div>
           <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1rem' }}>
-            <Button variant="contained">Paylaş</Button>
+            <Button variant="contained" onClick={() => { shareToPost() }}>Paylaş</Button>
           </div>
         </div>
       </Modal>
@@ -86,7 +126,7 @@ const Clubs = () => {
             <SettingsTextarea />
           </div>
           <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1rem' }}>
-            <Button variant="contained">Paylaş</Button>
+            <Button variant="contained" onClick={() => shareToPost()}>Paylaş</Button>
           </div>
         </div>
       </Modal>
@@ -141,12 +181,12 @@ const Clubs = () => {
                   <Button
                     style={{ marginLeft: '1rem' }}
                     onClick={() => {
-                      setEditModal(true);
                       setActiveClub(club);
+                      setPostModal(true)
                     }}
                   >
                     {' '}
-                    Düzenle
+                    Duyuru yayınla
                   </Button>
                 </div>
               </Card.Body>

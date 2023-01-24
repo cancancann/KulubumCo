@@ -67,7 +67,7 @@ const ClubsPage = () => {
               <Card key={club.ClubId}>
                 <Card.Img photo={horsePhoto} />
                 <Card.Body>
-                  <Card.Label> {club.ClubId}</Card.Label>
+                  <Card.Label>Takipçi sayısı :  {club.FollowerAmount}</Card.Label>
                   <Card.Title>{club.ClubName}</Card.Title>
                   <Card.Owner>{club.UniversityName}</Card.Owner>
                   <Card.Caption>{club.Description}</Card.Caption>
